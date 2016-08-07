@@ -1,49 +1,61 @@
 <!doctype html>
 <html>
-<HEAD>
-	<style>
-		#ex1Slider .slider-selection {
-	background: #BABABA;
-	}
-	</style>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script> 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.js"></script> 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.js"></script>
+	<HEAD>
+		<style>
+			#ex1Slider .slider-selection {
+		background: #BABABA;
+		}
+		</style>
+		<script type="text/javascript" src="../lib/js/jquery-3.1.0.js"></script> 
+	<!-- 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.js"></script>  -->
+		<script type="text/javascript" src="../lib/js/bootstrap-slider.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.css">
-</HEAD>
-   <body>
-   <div style="float: left; position: relative;">
-      <canvas width = "800" height = "800" style="position: absolute; left: 0; top: 0;" id = "xy_canvas">
-       </canvas>
-      <canvas width = "800" height = "800" id = "xy_line_canvas" style="position: absolute; left: 0; top: 0;"> 
-      </canvas>
-
-      	
-      </div style = "float:left">
-      <div>
-      	<input id="line_rot" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
-      </div>
-      <div>
-      	<input id="ver" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
-      </div>
-      <div>
-      	<input id="hor" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
-      </div>
-
-       <div>
-      	<input id="rot" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
-      </div>
-      <div style = "float:right;">
-      <canvas width = "350" height = "350" id = "xy_plan_canvas">
-       </canvas>
-       <canvas width = "350" height = "350" id = "yz_plan_canvas">
-       </canvas>
-       <canvas width = "350" height = "350" id = "zx_plan_canvas">
-       </canvas>
-      	</div>
-      <div id="eq" ">xyz</div>
-      
+		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap-slider.css">
+	</HEAD>
+	<body>
+	   <div style="float: left; position: relative;">
+		  <canvas width = "800" height = "800" style="position: absolute; left: 0; top: 0;" id = "xy_canvas">
+		   </canvas>
+		  </div style = "float:left"
+		  <div>
+			<input id="axis_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+		  </div>
+		  <div>
+			<input id="axis_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+		  </div>
+		  <div>
+			<input id="axis_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+		  </div>
+		  <div>
+			<input id="line_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+		  </div>
+		  <div>
+			<input id="line_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+		  </div>
+		  <div>
+			<input id="line_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+		  </div>
+		  <div style = "float:right;margin-top:-80px;position:relative;">
+			<div style = "float:left; position:relative;">
+				<canvas width = "350" height = "350" id = "xy_plane_canvas"></canvas>
+				<p style = "position:relative; text-align:center;">X-Y</p>
+				<p id = "xy_eqn" style = "position:relative; text-align:center;">AX+BY=C</p>
+			</div>
+			
+			<div style = "float:left; position:relative;">
+				<canvas width = "350" height = "350" id = "yz_plane_canvas"></canvas>
+				<p style = "position:relative; text-align:center;">Y-Z</p>
+				<p id = "yz_eqn" style = "position:relative; text-align:center;">DY+EZ=F</p>
+			</div>
+			
+			<div style = "float:left;position:relative;">
+				<canvas width = "350" height = "350" id = "zx_plane_canvas"></canvas>
+				<p style = "position:relative; text-align:center;">Z-X</p>
+				<p id = "xz_eqn" style = "position:relative; text-align:center;">GZ+HX=I</p>
+			</div>	
+			
+		  </div>
+		</div> 
 	</body>	
       <script type="text/javascript" src="../scr/dr.js"></script>
 </html> 
