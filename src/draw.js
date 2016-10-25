@@ -89,7 +89,7 @@ var vertices = [
 				 1,0,-1,0, 
 				-1,0,1,0,
 				 1,0,-1,0, 
-				 1,0,1,0				 
+				 1,0,1,0
 				];
 var vertex_buffer = gl.createBuffer ();
 gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
@@ -110,8 +110,8 @@ var line_alpha = 250;
 gl.bufferData(
 	gl.ARRAY_BUFFER
     ,new Uint8Array([
-    	250,  10, 10, line_alpha,
-        250,  10, 10, line_alpha,
+    	255,  0, 0, line_alpha,
+        0,  250, 0, line_alpha,
 
 		2,  2, 2, axis_alpha,
 		2,  2, 2, axis_alpha,
@@ -138,6 +138,9 @@ gl.bufferData(
         128, 128, 128, plane_alpha,
         128, 128, 128, plane_alpha,
         128, 128, 128, plane_alpha,
+        128, 128, 128, plane_alpha,
+        128, 128, 128, plane_alpha,
+
         128, 128, 128, plane_alpha,
         128, 128, 128, plane_alpha])
 	,gl.STATIC_DRAW
@@ -206,7 +209,7 @@ zxContext = getUpdatedContext(zxContext, zxProgram, vertCodeXYZ, fragCodeXYZ, [
 											255, 255, 255,
 											
 											255,0,0,
-											255,0,0
+											0,255,0
 										], verticesPlane.concat([vertices[lineCoordinateStart], 
 																vertices[lineCoordinateStart+2],vertices[lineCoordinateStart+1],1,
 																vertices[lineCoordinateStart+4],
@@ -233,7 +236,7 @@ var yzContext = getUpdatedContext(yzContext, yzProgram, vertCodeXYZ, fragCodeXYZ
 											255, 255, 255,
 
 											255,0,0,
-											255,0,0
+											0,255,0
 										], verticesPlane.concat([vertices[lineCoordinateStart+1], 
 																vertices[lineCoordinateStart+2],vertices[lineCoordinateStart],1,
 																vertices[lineCoordinateStart+5],
@@ -260,7 +263,7 @@ var xyContext = getUpdatedContext(xyContext, xyProgram, vertCodeXYZ, fragCodeXYZ
 											255, 255, 255,
 
 											255,0,0,
-											255,0,0
+											0,255,0
 
 										],verticesPlane.concat([vertices[lineCoordinateStart],
 																vertices[lineCoordinateStart+1],vertices[lineCoordinateStart+2],1,
@@ -323,6 +326,15 @@ function I() {
      0, 0, 1, 0,
      0, 0, 0, 1,
   ];
+}
+
+function projectionMatrix(width, height, depth) {
+	return [
+       2/width, 0, 0, 0,
+       0, -2/height, 0, 0,
+       0, 0, 2/depth, 0,
+      -1, 1, 0, 1,
+    ];
 }
 
 function matrixMultiply(a, b) {
@@ -487,6 +499,23 @@ var getPlaneSpecificEquation = function (cofficients, axis1, axis2) { //aAXIS1+b
 	return axis1_part + sign + axis2_part +' = ' + c_part;
 }
 
+var getLineEquationIn3D = function(p1, p2) {
+	dif_x = p2[0]-p1[0];
+	dif_y = p2[1]-p1[1];
+	dif_z = p2[2]-p1[2];
+	
+	sign = p1[0] < 0 ? ' + ':' - ';
+	x_part = '(x'+sign+roundDecimalPlaces(Math.abs(p1[0]))+') / '+ roundDecimalPlaces(dif_x);
+
+	sign = p1[1] < 0 ? ' + ':' - ';
+	y_part = '(y'+sign+roundDecimalPlaces(Math.abs(p1[1]))+') / '+ roundDecimalPlaces(dif_y);
+	
+	sign = p1[2] < 0 ? ' + ':' - ';
+	z_part = '(z'+sign+roundDecimalPlaces(Math.abs(p1[2]))+') / '+ roundDecimalPlaces(dif_z);
+
+	return x_part + ' = ' + y_part + ' = ' + z_part + '= FREEDOM';
+}
+
 var getEquations = function(p1, p2) {
 	equations = {};
 
@@ -494,26 +523,30 @@ var getEquations = function(p1, p2) {
 					{'a1':p2[0], 'a2':p2[1]}
 				];
 	xy_cofficients = getExuationCofficient(xy_points);
-	equations.xy = getPlaneSpecificEquation(xy_cofficients, 'X', 'Y');
+	equations.xy = getPlaneSpecificEquation(xy_cofficients, 'x', 'y');
 
 	xz_points = [	{'a1':p1[0],'a2':p1[2]},
 					{'a1':p2[0], 'a2':p2[2]}
 				];
 	xz_cofficients = getExuationCofficient(xz_points);
-	equations.xz = getPlaneSpecificEquation(xz_cofficients, 'X', 'Z');
+	equations.xz = getPlaneSpecificEquation(xz_cofficients, 'x', 'z');
 
 	yz_points = [	{'a1':p1[1],'a2':p1[2]},
 					{'a1':p2[1], 'a2':p2[2]}
 				];
 	yz_cofficients = getExuationCofficient(yz_points);
-	equations.yz = getPlaneSpecificEquation(yz_cofficients, 'Y', 'Z');
-	 return equations;
+	equations.yz = getPlaneSpecificEquation(yz_cofficients, 'y', 'z');
+
+	equations.xyz = getLineEquationIn3D(p1, p2);
+	return equations;
 }
 
 var changeEquationInInterface = function(equations) {
 	$('#xy_eqn').html(equations.xy);
 	$('#yz_eqn').html(equations.yz);
 	$('#xz_eqn').html(equations.xz);
+	$('#xyz_eqn').html(equations.xyz);
+	//$('#xyz_eqn').html('`'+equations.xyz+'`');
 }
 
 var displayEquations = function(transformation_matrix) {
@@ -535,6 +568,7 @@ line_rotation=[0,0,0];
 
 $('#axis_rot_X').slider({
 	formatter: function(value) {
+		gl.useProgram(shaderprogram);
 		axis_rotation[0] = value;
 		matrix_axis_rot = getRotation(axis_rotation);
 		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
@@ -542,12 +576,14 @@ $('#axis_rot_X').slider({
 		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
 		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
 		drawLineAndTriangle(gl, 8, 18, 0, 8);
-		displayEquations(getRotation(line_rotation));												 
+		displayEquations(getRotation(line_rotation));
+		drawAxisNames(matrix_axis_rot, gl);												 
 	} 
 });
 
 $('#axis_rot_Y').slider({
 	formatter: function(value) {
+		gl.useProgram(shaderprogram);
 		axis_rotation[1] = value;
 		matrix_axis_rot = getRotation(axis_rotation);
 		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
@@ -555,25 +591,30 @@ $('#axis_rot_Y').slider({
 		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
 		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);		
 		drawLineAndTriangle(gl, 8, 18, 0, 8);
+		drawAxisNames(matrix_axis_rot, gl);
 		displayEquations(getRotation(line_rotation));
 	} 
 });
 
 $('#axis_rot_Z').slider({
 	formatter: function(value) {
+		gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+		gl.useProgram(shaderprogram);
 		axis_rotation[2] = value;
-		matrix_axis_rot = getRotation(axis_rotation);
+		matrix_axis_rot =getRotation(axis_rotation);
 		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
 		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
 		drawLineAndTriangle(gl, 8, 18, 0, 8);
+		drawAxisNames(matrix_axis_rot, gl);
 		displayEquations(getRotation(line_rotation));
 	} 
 });
 
 $('#line_rot_X').slider({
  	formatter: function(value) {
+ 		gl.useProgram(shaderprogram);
 		line_rotation[0] = value;
 		matrix_axis_rot = getRotation(axis_rotation);
 		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
@@ -581,6 +622,7 @@ $('#line_rot_X').slider({
 		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
 		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
 		drawLineAndTriangle(gl, 8, 18, 0, 8);
+		drawAxisNames(matrix_axis_rot, gl);
 
 		m_line_rotation = getRotation(line_rotation);
 		setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', m_line_rotation);
@@ -600,6 +642,7 @@ $('#line_rot_X').slider({
 
 $('#line_rot_Y').slider({
  	formatter: function(value) {
+ 		gl.useProgram(shaderprogram);
 		line_rotation[1] = value;
 
 		matrix_axis_rot = getRotation(axis_rotation);
@@ -608,6 +651,7 @@ $('#line_rot_Y').slider({
 		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
 		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
 		drawLineAndTriangle(gl, 8, 18, 0, 8);
+		drawAxisNames(matrix_axis_rot, gl);
 
 		m_line_rotation = getRotation(line_rotation);
 		setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', m_line_rotation);
@@ -622,11 +666,13 @@ $('#line_rot_Y').slider({
 		drawIndependentPlane(yzContext);
 		drawIndependentPlane(zxContext);
 		displayEquations(getRotation(line_rotation));
+
  	} 
 });
 
 $('#line_rot_Z').slider({
  	formatter: function(value) {
+ 		gl.useProgram(shaderprogram);
 		line_rotation[2] = value;
 
 		matrix_axis_rot = getRotation(axis_rotation);
@@ -649,15 +695,135 @@ $('#line_rot_Z').slider({
 		drawIndependentPlane(yzContext);
 		drawIndependentPlane(zxContext);
 		displayEquations(getRotation(line_rotation));
+		drawAxisNames(matrix_axis_rot, gl);
  	} 
 });
 
 
+// function loadTex(image, gl) {
+	
+// 	var image = new Image();
+// 	image.src = file;
+// 	image.addEventListener('load', function() {
+  		
+//   	//gl.generateMipmap(gl.TEXTURE_2D);
+// 	});
+//}
+
+// var textCodeXYZ = 'attribute vec4 a_position;'+
+// 				'attribute vec2 a_texcoord;'+
+// 				'varying vec2 v_texcoord;'+
+// 				'void main() {'+
+// 					'gl_Position = a_position;'+
+// 					'v_texcoord = a_texcoord;'+
+// 				'}';
+
+// var textFragCodeXYZ = 'precision mediump float;'+
+// 					'varying vec2 v_texcoord;'+
+// 					'uniform sampler2D u_texture;'+
+// 					'void main() {'+
+//    						'gl_FragColor = texture2D(u_texture, v_texcoord);'+
+// 					'}';
+
+// function isPowerOf2(value) {
+//   return (value & (value - 1)) == 0;
+// }
+
+// r=1;
+// var vert =  [0,0,1,r,
+// 			0,0];
+
+// var texContext = getContext('tex_plane_canvas');
+// //var texProgram = texContext.createProgram();
 
 
 
+// function drawTex(gl) {
+// 	var texProgram  = gl.createProgram();
+// 	var buf = gl.createBuffer();
+// 	gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+// 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vert), gl.STATIC_DRAW);
+// 	programSetup(gl, texProgram, textCodeXYZ, textFragCodeXYZ);
+// 	var pLocation = gl.getAttribLocation(texProgram, "a_position");
+// 	gl.enableVertexAttribArray(pLocation);
+// 	gl.vertexAttribPointer(positionLocation, 4, gl.FLOAT, false, 0, 0);
+// 	var texLocation = gl.getAttribLocation(texProgram, "a_texcoord");
+// 	gl.enableVertexAttribArray(texLocation);
+// 	gl.vertexAttribPointer(texLocation, 2, gl.FLOAT, false, 0, 4*4);
+// 	gl.drawArrays(gl.POINTS, 0, 1);
+// }
 
 
+// var image = new Image();
+// image.src = 'X.png';
+// image.crossOrigin = 'Anonymous';
+// image.addEventListener('load', function() {
+// 	p(image);
+// 	var textTex = texContext.createTexture();
+// 	texContext.bindTexture(texContext.TEXTURE_2D, textTex);
+//   	texContext.texImage2D(texContext.TEXTURE_2D, 0, texContext.RGBA, texContext.RGBA,texContext.UNSIGNED_BYTE, image);
+//   	if (isPowerOf2(image.width) && isPowerOf2(image.height)) {
+//      texContext.generateMipmap(texContext.TEXTURE_2D);
+//   	} else {
+//     texContext.texParameteri(texContext.TEXTURE_2D, texContext.TEXTURE_WRAP_S, texContext.CLAMP_TO_EDGE);
+//     texContext.texParameteri(texContext.TEXTURE_2D, texContext.TEXTURE_WRAP_T, texContext.CLAMP_TO_EDGE);
+//     texContext.texParameteri(texContext.TEXTURE_2D, texContext.TEXTURE_MIN_FILTER, texContext.LINEAR);
+//   }
+//   	p('x');
+// 	drawTex(texContext);
+// 	p('y');
+// });
+
+function transformVector(m, v, dst) {
+    dst = dst || new Float32Array(4);
+    for (var i = 0; i < 4; ++i) {
+      dst[i] = 0.0;
+      for (var j = 0; j < 4; ++j) {
+        dst[i] += v[j] * m[j * 4 + i];
+      }
+    }
+    return dst;
+}
 
 
+function drawAxisNames(transformationMatrix, context) {
+	axisEnds = { 'x': [1,0,0,1],
+				'-x': [-1,0,0,1],
+				 'y': [0,1,0,1],
+				'-y': [0,-1,0,1],
+				 'z': [0,0,1,1],
+				'-z': [0,0,-1,1]
+			};
+	divContainerElement = document.getElementById("divcontainer");
+	divContainerElement.innerHTML = '';
+	for(key in axisEnds) {
+		var transformedCoord =transformVector(transformationMatrix, axisEnds[key]);
+		var div = createDivPositionAndText(key, transformedCoord, context);
+		divContainerElement.appendChild(div);	
+	}
+	
+}
 
+function createDivPositionAndText(name, coordinates, gl) {
+	p(coordinates);
+	var div = document.createElement("div");
+	var textNode = document.createTextNode("");
+	div.appendChild(textNode);
+	divContainerElement.appendChild(div);
+	coordinates[0] /= coordinates[3];
+	coordinates[1] /= coordinates[3];
+	var pixelX = (coordinates[0] * 0.5 + 0.52) * gl.canvas.width -25;
+	var pixelY = (coordinates[1] * -0.5 + 0.5) * gl.canvas.height - 12;
+	div.style.position = 'absolute';
+	div.style.left = Math.floor(pixelX) + "px";
+	div.style.top  = Math.floor(pixelY) + "px";
+	z_index = coordinates[2]/coordinates[3];
+	if(z_index > 0.2) {
+		div.style.zIndex = 1;
+	} else if (z_index < -0.2) {
+		z_index = -1
+		div.style.zIndex = -1;
+	}
+	textNode.nodeValue = name;
+	return div;
+}

@@ -1,61 +1,131 @@
 <!doctype html>
 <html>
 	<HEAD>
-		<style>
-			#ex1Slider .slider-selection {
-		background: #BABABA;
-		}
-		</style>
-		<script type="text/javascript" src="../lib/js/jquery-3.1.0.js"></script> 
-	<!-- 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.js"></script>  -->
-		<script type="text/javascript" src="../lib/js/bootstrap-slider.js"></script>
-
+		<link rel="stylesheet" type="text/css" href="../lib/css/model.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap-slider.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/home.css">
+
 	</HEAD>
 	<body>
-	   <div style="float: left; position: relative;">
-		  <canvas width = "800" height = "800" style="position: absolute; left: 0; top: 0;" id = "xy_canvas">
-		   </canvas>
-		  </div style = "float:left"
-		  <div>
-			<input id="axis_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
-		  </div>
-		  <div>
-			<input id="axis_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
-		  </div>
-		  <div>
-			<input id="axis_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
-		  </div>
-		  <div>
-			<input id="line_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
-		  </div>
-		  <div>
-			<input id="line_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
-		  </div>
-		  <div>
-			<input id="line_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
-		  </div>
-		  <div style = "float:right;margin-top:-80px;position:relative;">
-			<div style = "float:left; position:relative;">
-				<canvas width = "350" height = "350" id = "xy_plane_canvas"></canvas>
-				<p style = "position:relative; text-align:center;">X-Y</p>
-				<p id = "xy_eqn" style = "position:relative; text-align:center;">AX+BY=C</p>
+	<div style="max-width:100%;">
+		<div style="float: left; position: relative; max-width:40%">
+		   <div style= "border: 3px solid #eaeae9;" id="scroll_div">
+			  <div>
+				<label style = "font-weight: bold" for="axis_rotation_around_x;">Axis_X&nbsp&nbsp</label>
+				<input id="axis_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="25"/>
+				<label style =  "position: relative; font-weight: bold;" for="line_rotation_around_X">Line_X&nbsp&nbsp</label>
+				<input style = "position: relative;" name="line_rotation_around_X" id="line_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+			  </div>
+			  <div>
+				<label style = "font-weight: bold" for="axis_rotation_around_Y">Axis_Y&nbsp&nbsp</label>
+				<input name="axis_rotation_around_Y" id="axis_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="20"/>
+				<label style =  "position: relative; font-weight: bold" for="line_rotation_around_Y">Line_Y&nbsp&nbsp</label>
+				<input style =  "position: relative" name="line_rotation_around_Y" id="line_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+			  </div>
+			  <div>
+				<label style = "font-weight: bold" for="axis_rotation_around_Z">Axis_Z&nbsp&nbsp</label>
+				<input id="axis_rot_Z" name="axis_rotation_around_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="65"/>
+				<label style =  "position: relative; font-weight: bold" for="line_rotation_around_Z">Line_Z&nbsp&nbsp</label>
+				<input style =  "position: relative; font-weight: bold" name="line_rotation_around_Y" id="line_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+			  </div>
 			</div>
-			
-			<div style = "float:left; position:relative;">
-				<canvas width = "350" height = "350" id = "yz_plane_canvas"></canvas>
-				<p style = "position:relative; text-align:center;">Y-Z</p>
-				<p id = "yz_eqn" style = "position:relative; text-align:center;">DY+EZ=F</p>
+			<div id="cd" style = "position:relative">
+				<div style="position:absolute">
+			  		<canvas width = "800" height = "800" id = "xy_canvas"></canvas>
+			  	</div>
+			  <div id="divcontainer"></div>
 			</div>
-			
-			<div style = "float:left;position:relative;">
-				<canvas width = "350" height = "350" id = "zx_plane_canvas"></canvas>
-				<p style = "position:relative; text-align:center;">Z-X</p>
-				<p id = "xz_eqn" style = "position:relative; text-align:center;">GZ+HX=I</p>
+		</div>
+	
+		<div style = "float:right;position:relative; max-width:60%">
+			<div class="messagepop pop">
+				<p class="para_common"> This is an attempt to visualize a line in two dimensional(2D) and three dimensional (3D) space. This simulation demonstrates the rotation of a line around X, Y and Z Axis in 3d space and effect of these rotations on projection of line on X-Y, Y-Z and Z-X planes. </p>
+
+				<p class="para_common" style="font-weight: bold" "> How to use the Tool:</p>
+				<p class="para_common"> Axis_X - Rotation of planes(blue, brown and green) around horizontal line of screen.
+					<br> Axis_Y - Rotation of planes(blue, brown and green) around vertical line of screen.
+					<br> Axis_Z - Rotation of planes(blue, brown and green) around line coming out of screen of screen.
+					<br> Line_X - Rotation of Line(ending in Red and green colours) around X axis (one of the black axis line).
+					<br> Line_Y - Rotation of Line(ending in Red and green colours) around Y axis (one of the black axis line).
+					<br> Line_Z - Rotation of Line(ending in Red and green colours) around Z axis (one of the black axis line).
+				</p>
+				<p class="para_common">
+					Three planes on the right side of the screen in green, blue and brown colors respectively demonstrate the projection of line from 3D figure(left side of screen) on respective planes. Bottom part of these planes contains the equation of the line in respective planes(2D); 
+				</p>
+
+				<p class="para_common">
+					Final equation(contains all of X, Y, Z) represents the equation of line in 3D. FREEDOM is any real number value for which all three coordinates (x, y, z) can be obtained with constraint of lying on the line.
+				</p>
+
+				<button type="button" class= 'btn_local' id = 'model_got_it'>Close IT!</button>
+			</div>
+			<div style="float:right; position:relative;">
+				<div style = "float:left; position:relative;">
+					<canvas width = "350" height = "350" id = "xy_plane_canvas"></canvas>
+					<p style = "position:relative; text-align:center;">X-Y</p>
+					<p class = 'eqn' id = "xy_eqn" style = "position:relative; text-align:center;">AX+BY=C</p>
+				</div>
+
+				<div style = "float:left; position:relative; height:370">
+					<canvas width = "350" height = "350" id = "yz_plane_canvas"></canvas>
+					<p style = "position:relative; text-align:center;">Y-Z</p>
+					<p class = 'eqn' id = "yz_eqn" style = "position:relative; text-align:center;">DY+EZ=F</p>
+				</div>
+
+				<div style = "float:left;position:relative;">
+					<canvas width = "350" height = "350" id = "zx_plane_canvas"></canvas>
+					<p style = "position:relative; text-align:center;">Z-X</p>
+					<p class = 'eqn' id = "xz_eqn" style = "position:relative; text-align:center;">GZ+HX=I</p>
+				</div>
 			</div>	
+			<div>
+				<p id = "xyz_eqn" style = "text-align:center;float:right;width:100%;margin-top: 2%;" class = 'eqn'>GZ+HX=I</p>
+			</div>
 			
-		  </div>
+			<div class='option_div'>
+				<p style = "text-align:center;float:right;width:100%; margin-right:0%; background:rgba(7, 9, 35, 0.69); color:white" class = 'eqn'>Predefined Line Positions</p>
+				<div class="btn-group" role="group" aria-label="..." style="margin-top:1%; margin-bottom:0.5%;margin-left:0.5%">
+					<button type="button" class="btn btn-default btn-preset">45 degrees to all the axis</button>
+					<div class="btn-group" role="group">
+					  <button class="btn btn-default dropdown-toggle btn-preset" type="button" id="dropdownParallel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Parallel To
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownParallel">
+					    <li><a href="#">X-Axis</a></li>
+					    <li><a href="#">Y-Axis</a></li>
+					    <li><a href="#">Z-Axis</a></li>
+					    <li><a href="#">X and Z Axis</a></li>
+					    <li><a href="#">Y AND Z Axis</a></li>
+					    <li><a href="#">X AND Y Axis</a></li>
+					  </ul>
+					</div>
+					<div class="btn-group" role="group">
+					  <button class="btn btn-default dropdown-toggle btn-preset" type="button" id="dropdownPerpendicular" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Parpendicular To
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownPerpendicular">
+					    <li><a href="#">XZ Plane</a></li>
+					    <li><a href="#">YZ Plane</a></li>
+					    <li><a href="#">XY Plane</a></li>
+					  </ul>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div>
+				<a href = '' id = "help" class = 'help'>Click Here to Get More Information about the Tool</a>
+			</div>
 		</div> 
-	</body>	
-      <script type="text/javascript" src="../scr/dr.js"></script>
+	</div>
+	
+</body>
+	<script type="text/javascript" src="../lib/js/jquery-3.1.0.js"></script>
+	<script type="text/javascript" src="../lib/js/model.js"></script>
+	<script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../lib/js/bootstrap-slider.js"></script>	
+    <script type="text/javascript" src="../src/draw.js"></script>
 </html> 
