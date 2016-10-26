@@ -29,12 +29,21 @@
 				<label style =  "position: relative; font-weight: bold" for="line_rotation_around_Z">Line_Z&nbsp&nbsp</label>
 				<input style =  "position: relative; font-weight: bold" name="line_rotation_around_Y" id="line_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
 			  </div>
+			  <div class="input-group">
+  				<span class="input-group-addon">Point A</span>
+				<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<span class="input-group-addon">Point B</span>
+				<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<span class="input-group-btn">
+        		<button class="btn btn-primary" type="button">Plot Points</button>
+      			</span>
+			  </div>
 			</div>
 			<div id="cd" style = "position:relative">
 				<div style="position:absolute">
 			  		<canvas width = "800" height = "800" id = "xy_canvas"></canvas>
 			  	</div>
-			  <div id="divcontainer"></div>
+			  <div id="xyzAxis" class="axisContainer"></div>
 			</div>
 		</div>
 	
@@ -60,27 +69,30 @@
 
 				<button type="button" class= 'btn_local' id = 'model_got_it'>Close IT!</button>
 			</div>
-			<div style="float:right; position:relative;">
+			<div style="position:relative;">
 				<div style = "float:left; position:relative;">
 					<canvas width = "350" height = "350" id = "xy_plane_canvas"></canvas>
+					<div id="xyAxis" class="axisContainer"></div>
 					<p style = "position:relative; text-align:center;">X-Y</p>
 					<p class = 'eqn' id = "xy_eqn" style = "position:relative; text-align:center;">AX+BY=C</p>
 				</div>
 
 				<div style = "float:left; position:relative; height:370">
 					<canvas width = "350" height = "350" id = "yz_plane_canvas"></canvas>
+					<div id="yzAxis" class="axisContainer"></div>
 					<p style = "position:relative; text-align:center;">Y-Z</p>
 					<p class = 'eqn' id = "yz_eqn" style = "position:relative; text-align:center;">DY+EZ=F</p>
 				</div>
 
 				<div style = "float:left;position:relative;">
 					<canvas width = "350" height = "350" id = "zx_plane_canvas"></canvas>
+					<div id="zxAxis" class="axisContainer"></div>
 					<p style = "position:relative; text-align:center;">Z-X</p>
 					<p class = 'eqn' id = "xz_eqn" style = "position:relative; text-align:center;">GZ+HX=I</p>
 				</div>
 			</div>	
-			<div>
-				<p id = "xyz_eqn" style = "text-align:center;float:right;width:100%;margin-top: 2%;" class = 'eqn'>GZ+HX=I</p>
+			<div style="position:relative">
+				<p id = "xyz_eqn" style = "text-align:center;float:right;width:100%;margin-top:2%;margin-right:0%;" class = 'eqn'>GZ+HX=I</p>
 			</div>
 			
 			<div class='option_div'>
@@ -113,10 +125,44 @@
 					  </ul>
 					</div>
 				</div>
-				
 			</div>
-			
-			<div>
+			<div id="notes_div">
+				<div id="carousel-example-generic" class="carousel slide notes" data-ride="carousel">
+ 				 <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				  </ol>
+
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner" role="listbox">
+				    <div class="item active">
+				      <p>dnakjdnakndlka</p>
+				      <div class="carousel-caption">
+				        XYZ
+				      </div>
+				    </div>
+				    <div class="item">
+				      <p>dnakjdnakndlkadmvkmvkmvk</p>
+				      <div class="carousel-caption">
+				        ABC
+				      </div>
+				    </div>
+				  </div>
+
+				  <!-- Controls -->
+				  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</div>
+			<div style="float:right;">
 				<a href = '' id = "help" class = 'help'>Click Here to Get More Information about the Tool</a>
 			</div>
 		</div> 

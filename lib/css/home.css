@@ -5,16 +5,14 @@
 .eqn {
 	background:#eaeae9;
 	margin:auto;
-	margin-right:3px;
 	font-size:x-large;
+	margin-right: 1%;
 }
 .help {
 	text-align: center;
 	bottom: 0;
 	position: fixed;
-	width: 55%;
-	border: 3px solid white;
-	/*background: #f82c2c;*/
+	width: 60%;
 	font-size: larger;
 	font-weight: bold;
 	color:red;
@@ -42,9 +40,10 @@
 .option_div{
 	border:1px solid #eaeae9;
 	width:100%;
+	margin-top:1%;
+	position: relative;
 	float: right;
-	margin-top:2%;
-	margin-right:1%
+
 }
 
 .btn-preset {
@@ -53,12 +52,22 @@
     margin-left: 1%;
 }
 
-#divcontainer {
+.axisContainer {
     position: absolute;
-    left: 0px;
-    /* top: -80px; */
-    width: 800px;
-    height: 805px;
-    z-index: -10;
     overflow: hidden;
+}
+
+.notes {
+	position: relative;
+	float: right;
+	width: 100%;
+	/*border:3px solid #eaeae9;*/
+}
+
+#notes_div {
+	position: relative;
+	float: right;
+	width: 100%;
+	border:1px solid #eaeae9;
+	margin-bottom: 25%;
 }

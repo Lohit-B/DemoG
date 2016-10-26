@@ -563,142 +563,89 @@ var displayEquations = function(transformation_matrix) {
 }
 
 
-axis_rotation=[0,0,0];
-line_rotation=[0,0,0];
+var axis_rotation=[0,0,0];
+var line_rotation=[0,0,0];
 
 $('#axis_rot_X').slider({
 	formatter: function(value) {
-		gl.useProgram(shaderprogram);
 		axis_rotation[0] = value;
-		matrix_axis_rot = getRotation(axis_rotation);
-		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
-		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
-		drawLineAndTriangle(gl, 8, 18, 0, 8);
-		displayEquations(getRotation(line_rotation));
-		drawAxisNames(matrix_axis_rot, gl);												 
+		drawIn3D(axis_rotation, line_rotation);
+		displayEquations(getRotation(line_rotation));	
+
 	} 
 });
 
 $('#axis_rot_Y').slider({
 	formatter: function(value) {
-		gl.useProgram(shaderprogram);
 		axis_rotation[1] = value;
-		matrix_axis_rot = getRotation(axis_rotation);
-		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
-		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);		
-		drawLineAndTriangle(gl, 8, 18, 0, 8);
-		drawAxisNames(matrix_axis_rot, gl);
+		drawIn3D(axis_rotation, line_rotation);
 		displayEquations(getRotation(line_rotation));
 	} 
 });
 
 $('#axis_rot_Z').slider({
 	formatter: function(value) {
-		gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-		gl.useProgram(shaderprogram);
 		axis_rotation[2] = value;
-		matrix_axis_rot =getRotation(axis_rotation);
-		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
-		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
-		drawLineAndTriangle(gl, 8, 18, 0, 8);
-		drawAxisNames(matrix_axis_rot, gl);
+		drawIn3D(axis_rotation, line_rotation);
 		displayEquations(getRotation(line_rotation));
 	} 
 });
 
 $('#line_rot_X').slider({
  	formatter: function(value) {
- 		gl.useProgram(shaderprogram);
 		line_rotation[0] = value;
-		matrix_axis_rot = getRotation(axis_rotation);
-		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
-		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
-		drawLineAndTriangle(gl, 8, 18, 0, 8);
-		drawAxisNames(matrix_axis_rot, gl);
-
-		m_line_rotation = getRotation(line_rotation);
-		setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', m_line_rotation);
-		
-		rotation_new = getRotationWithShuffledRowsAndCells(m_line_rotation, [[1,2], [2,3]]);
-		setUniformMatrix(yzContext, xyzPrograms[1], 'transformation', rotation_new);
-		
-		rotation_new = getRotationWithShuffledRowsAndCells(getRotation(line_rotation), [[2,3]]);
-		setUniformMatrix(zxContext, xyzPrograms[2], 'transformation', rotation_new);
-
-		drawIndependentPlane(xyContext);
-		drawIndependentPlane(yzContext);
-		drawIndependentPlane(zxContext);
+		draw(axis_rotation, line_rotation);
 		displayEquations(getRotation(line_rotation));
  	} 
 });
 
 $('#line_rot_Y').slider({
  	formatter: function(value) {
- 		gl.useProgram(shaderprogram);
 		line_rotation[1] = value;
-
-		matrix_axis_rot = getRotation(axis_rotation);
-		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
-		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
-		drawLineAndTriangle(gl, 8, 18, 0, 8);
-		drawAxisNames(matrix_axis_rot, gl);
-
-		m_line_rotation = getRotation(line_rotation);
-		setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', m_line_rotation);
-		
-		rotation_new = getRotationWithShuffledRowsAndCells(m_line_rotation, [[1,2], [2,3]]);
-		setUniformMatrix(yzContext, xyzPrograms[1], 'transformation', rotation_new);
-		
-		rotation_new = getRotationWithShuffledRowsAndCells(getRotation(line_rotation), [[2,3]]);
-		setUniformMatrix(zxContext, xyzPrograms[2], 'transformation', rotation_new);
-
-		drawIndependentPlane(xyContext);
-		drawIndependentPlane(yzContext);
-		drawIndependentPlane(zxContext);
+		draw(axis_rotation, line_rotation);
 		displayEquations(getRotation(line_rotation));
-
  	} 
 });
 
 $('#line_rot_Z').slider({
  	formatter: function(value) {
- 		gl.useProgram(shaderprogram);
 		line_rotation[2] = value;
+		draw(axis_rotation, line_rotation);
+		displayEquations(getRotation(line_rotation));
+ 	} 
+});
 
-		matrix_axis_rot = getRotation(axis_rotation);
-		matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
-		setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
-		drawLineAndTriangle(gl, 8, 18, 0, 8);
+function draw(axis_rotation, line_rotation) {
+		drawIn3D(axis_rotation, line_rotation);
+		drawIn2D(line_rotation);
+}
 
-		m_line_rotation = getRotation(line_rotation);
-		setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', m_line_rotation);
+function drawIn3D(axis_rotation, line_rotation) {
+	matrix_axis_rot =getRotation(axis_rotation);
+	matrix_line_rot = getRotation(getModifiedLineRotation(axis_rotation, line_rotation));
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+	setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
+	setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
+	drawLineAndTriangle(gl, 8, 18, 0, 8);
+	drawingCtxs = getContextDataForAlias();
+	drawingCtxs['xyz'].transformationMatrix = matrix_axis_rot;
+	drawPointAlias(drawingCtxs);
+}
+
+function drawIn2D(line_rotation) {
+		rotation_xy = getRotation(line_rotation);
+		setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', rotation_xy);
 		
-		rotation_new = getRotationWithShuffledRowsAndCells(m_line_rotation, [[1,2], [2,3]]);
-		setUniformMatrix(yzContext, xyzPrograms[1], 'transformation', rotation_new);
+		rotation_yz = getRotationWithShuffledRowsAndCells(rotation_xy, [[1,2], [2,3]]);
+		setUniformMatrix(yzContext, xyzPrograms[1], 'transformation', rotation_yz);
 		
-		rotation_new = getRotationWithShuffledRowsAndCells(getRotation(line_rotation), [[2,3]]);
-		setUniformMatrix(zxContext, xyzPrograms[2], 'transformation', rotation_new);
+		rotation_zx = getRotationWithShuffledRowsAndCells(getRotation(line_rotation), [[2,3]]);
+		setUniformMatrix(zxContext, xyzPrograms[2], 'transformation', rotation_zx);
 
 		drawIndependentPlane(xyContext);
 		drawIndependentPlane(yzContext);
 		drawIndependentPlane(zxContext);
-		displayEquations(getRotation(line_rotation));
-		drawAxisNames(matrix_axis_rot, gl);
- 	} 
-});
-
+}
 
 // function loadTex(image, gl) {
 	
@@ -785,26 +732,85 @@ function transformVector(m, v, dst) {
     return dst;
 }
 
-
-function drawAxisNames(transformationMatrix, context) {
-	axisEnds = { 'x': [1,0,0,1],
-				'-x': [-1,0,0,1],
-				 'y': [0,1,0,1],
-				'-y': [0,-1,0,1],
-				 'z': [0,0,1,1],
-				'-z': [0,0,-1,1]
-			};
-	divContainerElement = document.getElementById("divcontainer");
-	divContainerElement.innerHTML = '';
-	for(key in axisEnds) {
-		var transformedCoord =transformVector(transformationMatrix, axisEnds[key]);
-		var div = createDivPositionAndText(key, transformedCoord, context);
-		divContainerElement.appendChild(div);	
-	}
-	
+function getContextDataForAlias() {
+	return {
+		'xy': {
+			'axis': {
+				'x': [1,0,0,1.2],
+				'-x': [-1,0,0,1.1],
+				'y': [0,1,0,1.1],
+				'-y': [0,-1,0,1.2]
+			},
+			'container':'xyAxis',
+			'context_id':'xy_plane_canvas',
+			'color':'#e5e5e5'
+		},
+		'yz': {
+			'axis': {
+				'y': [1,0,0,1.2],
+				'-y': [-1,0,0,1.1],
+				'z': [0,1,0,1.1],
+				'-z': [0,-1,0,1.2]
+			},
+			'container':'yzAxis',
+			'context_id':'yz_plane_canvas',
+			'color':'#e5e5e5'
+		},
+		'zx': {
+			'axis': {
+				'z': [1,0,0,1.2],
+				'-z': [-1,0,0,1.1],
+				'x': [0,1,0,1.1],
+				'-x': [0,-1,0,1.2]
+			},
+			'container':'zxAxis',
+			'context_id':'zx_plane_canvas',
+			'color':'#e5e5e5'
+		},
+		'xyz': {
+			'axis': {
+				'x': [1,0,0,1.2],
+				'-x': [-1,0,0,1.1],
+				 'y': [0,1,0,1.1],
+				'-y': [0,-1,0,1.2],
+				 'z': [0,0,1,1.1],
+				'-z': [0,0,-1,1.2],
+				 'A': [1,1,1,1.42],
+				 'B':[-1,0,0,1.42]
+			},
+			'container':'xyzAxis',
+			'context_id':'xy_canvas',
+			'color':'black'
+		}
+	};
 }
 
-function createDivPositionAndText(name, coordinates, gl) {
+function drawPointAlias(contextData) {
+	for(key in contextData) {
+		divContainerElement = document.getElementById(contextData[key].container);
+		var canvasElem =  document.getElementById(contextData[key].context_id);
+		var style = canvasElem.currentStyle || window.getComputedStyle(canvasElem);
+		p(canvasElem.offsetWidth);
+		//divContainerElement.style.left = style.left;
+		divContainerElement.style.top = '0px';
+		divContainerElement.style.width = style.width;
+		divContainerElement.style.height = style.height;
+		divContainerElement.innerHTML = '';
+		axisEnds = contextData[key].axis;
+		color = contextData[key].color;
+		transformationMatrix = contextData[key].transformationMatrix;
+		for(key in axisEnds) {
+			var transformedCoord = axisEnds[key];
+			if(transformationMatrix != undefined) {
+				transformedCoord =transformVector(transformationMatrix, axisEnds[key]);
+			}
+			var div = createDivPositionAndText(key, transformedCoord, canvasElem.offsetWidth, canvasElem.offsetHeight, color);
+			divContainerElement.appendChild(div);	
+		}	
+	}
+}
+
+function createDivPositionAndText(name, coordinates, width, height, color) {
 	p(coordinates);
 	var div = document.createElement("div");
 	var textNode = document.createTextNode("");
@@ -812,11 +818,12 @@ function createDivPositionAndText(name, coordinates, gl) {
 	divContainerElement.appendChild(div);
 	coordinates[0] /= coordinates[3];
 	coordinates[1] /= coordinates[3];
-	var pixelX = (coordinates[0] * 0.5 + 0.52) * gl.canvas.width -25;
-	var pixelY = (coordinates[1] * -0.5 + 0.5) * gl.canvas.height - 12;
+	var pixelX = (coordinates[0] * 0.5 + 0.52) * width;
+	var pixelY = (coordinates[1] * -0.5 + 0.5) * height;
 	div.style.position = 'absolute';
 	div.style.left = Math.floor(pixelX) + "px";
 	div.style.top  = Math.floor(pixelY) + "px";
+	div.style.color = color;
 	z_index = coordinates[2]/coordinates[3];
 	if(z_index > 0.2) {
 		div.style.zIndex = 1;
