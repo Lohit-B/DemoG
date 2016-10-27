@@ -560,6 +560,7 @@ var displayEquations = function(transformation_matrix) {
 																vertices[lineCoordinateStart+7]]);
 	line_equations = getEquations(p1_coorninates, p2_coorninates);
 	changeEquationInInterface(line_equations);
+	setPointValuesInUI(p1_coorninates.slice(0,3), p2_coorninates.slice(0,3));
 }
 
 
@@ -736,10 +737,10 @@ function getContextDataForAlias() {
 	return {
 		'xy': {
 			'axis': {
-				'x': [1,0,0,1.2],
-				'-x': [-1,0,0,1.1],
-				'y': [0,1,0,1.1],
-				'-y': [0,-1,0,1.2]
+				'x=1': [1,0,0,1.4],
+				'-x=1': [-1,0,0,1.1],
+				'y=1': [0,1,0,1.1],
+				'-y=1': [0,-1,0,1.2]
 			},
 			'container':'xyAxis',
 			'context_id':'xy_plane_canvas',
@@ -747,10 +748,10 @@ function getContextDataForAlias() {
 		},
 		'yz': {
 			'axis': {
-				'y': [1,0,0,1.2],
-				'-y': [-1,0,0,1.1],
-				'z': [0,1,0,1.1],
-				'-z': [0,-1,0,1.2]
+				'y=1': [1,0,0,1.4],
+				'-y=1': [-1,0,0,1.1],
+				'z=1': [0,1,0,1.1],
+				'-z=1': [0,-1,0,1.2]
 			},
 			'container':'yzAxis',
 			'context_id':'yz_plane_canvas',
@@ -758,10 +759,10 @@ function getContextDataForAlias() {
 		},
 		'zx': {
 			'axis': {
-				'z': [1,0,0,1.2],
-				'-z': [-1,0,0,1.1],
-				'x': [0,1,0,1.1],
-				'-x': [0,-1,0,1.2]
+				'z=1': [1,0,0,1.4],
+				'-z=1': [-1,0,0,1.1],
+				'x=1': [0,1,0,1.1],
+				'-x=1': [0,-1,0,1.2]
 			},
 			'container':'zxAxis',
 			'context_id':'zx_plane_canvas',
@@ -769,12 +770,12 @@ function getContextDataForAlias() {
 		},
 		'xyz': {
 			'axis': {
-				'x': [1,0,0,1.2],
-				'-x': [-1,0,0,1.1],
-				 'y': [0,1,0,1.1],
-				'-y': [0,-1,0,1.2],
-				 'z': [0,0,1,1.1],
-				'-z': [0,0,-1,1.2],
+				'x=1': [1,0,0,1.2],
+				'-x=1': [-1,0,0,1.1],
+				 'y=1': [0,1,0,1.1],
+				'-y=1': [0,-1,0,1.2],
+				 'z=1': [0,0,1,1.1],
+				'-z=1': [0,0,-1,1.2],
 				 'A': [1,1,1,1.42],
 				 'B':[-1,0,0,1.42]
 			},
@@ -790,8 +791,6 @@ function drawPointAlias(contextData) {
 		divContainerElement = document.getElementById(contextData[key].container);
 		var canvasElem =  document.getElementById(contextData[key].context_id);
 		var style = canvasElem.currentStyle || window.getComputedStyle(canvasElem);
-		p(canvasElem.offsetWidth);
-		//divContainerElement.style.left = style.left;
 		divContainerElement.style.top = '0px';
 		divContainerElement.style.width = style.width;
 		divContainerElement.style.height = style.height;
@@ -811,7 +810,6 @@ function drawPointAlias(contextData) {
 }
 
 function createDivPositionAndText(name, coordinates, width, height, color) {
-	p(coordinates);
 	var div = document.createElement("div");
 	var textNode = document.createTextNode("");
 	div.appendChild(textNode);
@@ -833,4 +831,13 @@ function createDivPositionAndText(name, coordinates, width, height, color) {
 	}
 	textNode.nodeValue = name;
 	return div;
+}
+
+function setPointValuesInUI(a, b) {
+	points = a.concat(b);
+	point_ids = ['point_A_X', 'point_A_Y', 'point_A_Z', 'point_B_X', 'point_B_Y', 'point_B_Z'];
+	for(index in points) {
+		elemA = document.getElementById(point_ids[index]);
+		elemA.value = points[index];
+	}
 }

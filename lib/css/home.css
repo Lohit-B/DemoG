@@ -67,7 +67,33 @@
 #notes_div {
 	position: relative;
 	float: right;
-	width: 100%;
 	border:1px solid #eaeae9;
-	margin-bottom: 25%;
 }
+
+#point-input {
+	margin-top:0.5%; 
+	margin-left:0.3%; 
+	margin-right:0.3%;
+}
+
+#scroll_div {
+	margin-top: 0.2%;
+	margin-left: 1%;
+	margin-right:0.3%;
+	border: 1px solid #eaeae9;
+	max-width: 100%
+}
+
+.scroll_bar {
+	width:50%; 
+	float:left; 
+	margin-left:2%;
+	max-width: 50%;
+}
+
+#point-input>div>input {
+	width:33.3%; 
+	border-radius:0px; 
+	border:2px;
+}
+

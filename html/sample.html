@@ -10,38 +10,60 @@
 	<body>
 	<div style="max-width:100%;">
 		<div style="float: left; position: relative; max-width:40%">
-		   <div style= "border: 3px solid #eaeae9;" id="scroll_div">
+		   <div id="scroll_div">
 			  <div>
-				<label style = "font-weight: bold" for="axis_rotation_around_x;">Axis_X&nbsp&nbsp</label>
-				<input id="axis_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="25"/>
-				<label style =  "position: relative; font-weight: bold;" for="line_rotation_around_X">Line_X&nbsp&nbsp</label>
-				<input style = "position: relative;" name="line_rotation_around_X" id="line_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+			  	<div class="scroll_bar">
+					<label style = "font-weight: normal; font-size: small" for="axis_rotation_around_x;">Axis_X&nbsp&nbsp</label>
+					<input id="axis_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="25"/>
+				</div>
+				<div>
+					<label style =  "position: relative; font-weight: normal; font-size: small" for="line_rotation_around_X">Line_X&nbsp&nbsp</label>
+					<input style = "position: relative;" name="line_rotation_around_X" id="line_rot_X" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+				</div>
+				
 			  </div>
 			  <div>
-				<label style = "font-weight: bold" for="axis_rotation_around_Y">Axis_Y&nbsp&nbsp</label>
-				<input name="axis_rotation_around_Y" id="axis_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="20"/>
-				<label style =  "position: relative; font-weight: bold" for="line_rotation_around_Y">Line_Y&nbsp&nbsp</label>
-				<input style =  "position: relative" name="line_rotation_around_Y" id="line_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+			  	<div class="scroll_bar">
+			  		<label style = "font-weight: normal; font-size: small" for="axis_rotation_around_Y">Axis_Y&nbsp&nbsp</label>
+					<input name="axis_rotation_around_Y" id="axis_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="20"/>
+			  	</div>
+				<div>
+					<label style =  "position: relative; font-weight: normal; font-size: small" for="line_rotation_around_Y">Line_Y&nbsp&nbsp</label>
+					<input style =  "position: relative" name="line_rotation_around_Y" id="line_rot_Y" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+				</div>
 			  </div>
 			  <div>
-				<label style = "font-weight: bold" for="axis_rotation_around_Z">Axis_Z&nbsp&nbsp</label>
-				<input id="axis_rot_Z" name="axis_rotation_around_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="65"/>
-				<label style =  "position: relative; font-weight: bold" for="line_rotation_around_Z">Line_Z&nbsp&nbsp</label>
-				<input style =  "position: relative; font-weight: bold" name="line_rotation_around_Y" id="line_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+			  	<div class="scroll_bar">
+					<label style = "font-weight: normal; font-size: small" for="axis_rotation_around_Z">Axis_Z&nbsp&nbsp</label>
+					<input id="axis_rot_Z" name="axis_rotation_around_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="65"/>
+				</div>
+				<div>
+					<label style =  "position: relative; font-weight: normal; font-size: small" for="line_rotation_around_Z">Line_Z&nbsp&nbsp</label>
+					<input style =  "position: relative; font-weight: normal" name="line_rotation_around_Y" id="line_rot_Z" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="0"/>
+				</div>
 			  </div>
-			  <div class="input-group">
+			  <div class="input-group" id="point-input">
   				<span class="input-group-addon">Point A</span>
-				<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+  				<div>
+  					<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_A_X">
+					<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_A_Y">
+					<input border:1px;" type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_A_Z">
+  				</div>
+				
 				<span class="input-group-addon">Point B</span>
-				<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<div>
+  					<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_B_X">
+					<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_B_Y">
+					<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_B_Z">
+  				</div>
 				<span class="input-group-btn">
-        		<button class="btn btn-primary" type="button">Plot Points</button>
+        		<button class="btn btn-primary" type="button">Plot Line</button>
       			</span>
 			  </div>
 			</div>
 			<div id="cd" style = "position:relative">
 				<div style="position:absolute">
-			  		<canvas width = "800" height = "800" id = "xy_canvas"></canvas>
+			  		<canvas id = "xy_canvas"></canvas>
 			  	</div>
 			  <div id="xyzAxis" class="axisContainer"></div>
 			</div>
@@ -71,21 +93,21 @@
 			</div>
 			<div style="position:relative;">
 				<div style = "float:left; position:relative;">
-					<canvas width = "350" height = "350" id = "xy_plane_canvas"></canvas>
+					<canvas id = "xy_plane_canvas"></canvas>
 					<div id="xyAxis" class="axisContainer"></div>
 					<p style = "position:relative; text-align:center;">X-Y</p>
 					<p class = 'eqn' id = "xy_eqn" style = "position:relative; text-align:center;">AX+BY=C</p>
 				</div>
 
-				<div style = "float:left; position:relative; height:370">
-					<canvas width = "350" height = "350" id = "yz_plane_canvas"></canvas>
+				<div style = "float:left; position:relative;">
+					<canvas id = "yz_plane_canvas"></canvas>
 					<div id="yzAxis" class="axisContainer"></div>
 					<p style = "position:relative; text-align:center;">Y-Z</p>
 					<p class = 'eqn' id = "yz_eqn" style = "position:relative; text-align:center;">DY+EZ=F</p>
 				</div>
 
 				<div style = "float:left;position:relative;">
-					<canvas width = "350" height = "350" id = "zx_plane_canvas"></canvas>
+					<canvas id = "zx_plane_canvas"></canvas>
 					<div id="zxAxis" class="axisContainer"></div>
 					<p style = "position:relative; text-align:center;">Z-X</p>
 					<p class = 'eqn' id = "xz_eqn" style = "position:relative; text-align:center;">GZ+HX=I</p>
@@ -126,42 +148,6 @@
 					</div>
 				</div>
 			</div>
-			<div id="notes_div">
-				<div id="carousel-example-generic" class="carousel slide notes" data-ride="carousel">
- 				 <!-- Indicators -->
-				  <ol class="carousel-indicators">
-				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-				  </ol>
-
-				  <!-- Wrapper for slides -->
-				  <div class="carousel-inner" role="listbox">
-				    <div class="item active">
-				      <p>dnakjdnakndlka</p>
-				      <div class="carousel-caption">
-				        XYZ
-				      </div>
-				    </div>
-				    <div class="item">
-				      <p>dnakjdnakndlkadmvkmvkmvk</p>
-				      <div class="carousel-caption">
-				        ABC
-				      </div>
-				    </div>
-				  </div>
-
-				  <!-- Controls -->
-				  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				    <span class="sr-only">Previous</span>
-				  </a>
-				  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				    <span class="sr-only">Next</span>
-				  </a>
-				</div>
-			</div>
 			<div style="float:right;">
 				<a href = '' id = "help" class = 'help'>Click Here to Get More Information about the Tool</a>
 			</div>
@@ -173,5 +159,6 @@
 	<script type="text/javascript" src="../lib/js/model.js"></script>
 	<script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../lib/js/bootstrap-slider.js"></script>	
+	<script type="text/javascript" src="../src/dimensionSetter.js"></script>	
     <script type="text/javascript" src="../src/draw.js"></script>
 </html> 
