@@ -156,9 +156,9 @@ var vertCodeXYZ = 'attribute vec4 position;'+
 				'varying vec4 v_color;'+
             'void main(void) {'+
             	'if(position.w > 0.0){'+
-            		'gl_Position =  transformation*vec4(position.xyz, 1.05);'+
+            		'gl_Position =  transformation*vec4(position.xyz, 1);'+
             	'} else {'+
-              		'gl_Position =  vec4(position.xy, 0, 1.05);'+
+              		'gl_Position =  vec4(position.xy, 0, 1);'+
               	'}'+
                'v_color = a_color;'+
            ' }';
@@ -628,24 +628,24 @@ function drawIn3D(axis_rotation, line_rotation) {
 	setUniformMatrix(gl, shaderprogram, 'transformation_axis', matrix_axis_rot);
 	setUniformMatrix(gl, shaderprogram, 'transformation_line',matrix_line_rot);
 	drawLineAndTriangle(gl, 8, 18, 0, 8);
-	drawingCtxs = getContextDataForAlias();
+	drawingCtxs = getContextDataForAliasing();
 	drawingCtxs['xyz'].transformationMatrix = matrix_axis_rot;
 	drawPointAlias(drawingCtxs);
 }
 
 function drawIn2D(line_rotation) {
-		rotation_xy = getRotation(line_rotation);
-		setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', rotation_xy);
-		
-		rotation_yz = getRotationWithShuffledRowsAndCells(rotation_xy, [[1,2], [2,3]]);
-		setUniformMatrix(yzContext, xyzPrograms[1], 'transformation', rotation_yz);
-		
-		rotation_zx = getRotationWithShuffledRowsAndCells(getRotation(line_rotation), [[2,3]]);
-		setUniformMatrix(zxContext, xyzPrograms[2], 'transformation', rotation_zx);
+	rotation_xy = getRotation(line_rotation);
+	setUniformMatrix(xyContext, xyzPrograms[0], 'transformation', rotation_xy);
+	
+	rotation_yz = getRotationWithShuffledRowsAndCells(rotation_xy, [[1,2], [2,3]]);
+	setUniformMatrix(yzContext, xyzPrograms[1], 'transformation', rotation_yz);
+	
+	rotation_zx = getRotationWithShuffledRowsAndCells(getRotation(line_rotation), [[2,3]]);
+	setUniformMatrix(zxContext, xyzPrograms[2], 'transformation', rotation_zx);
 
-		drawIndependentPlane(xyContext);
-		drawIndependentPlane(yzContext);
-		drawIndependentPlane(zxContext);
+	drawIndependentPlane(xyContext);
+	drawIndependentPlane(yzContext);
+	drawIndependentPlane(zxContext);
 }
 
 // function loadTex(image, gl) {
@@ -733,7 +733,7 @@ function transformVector(m, v, dst) {
     return dst;
 }
 
-function getContextDataForAlias() {
+function getContextDataForAliasing() {
 	return {
 		'xy': {
 			'axis': {
@@ -759,10 +759,10 @@ function getContextDataForAlias() {
 		},
 		'zx': {
 			'axis': {
-				'z=1': [1,0,0,1.4],
-				'-z=1': [-1,0,0,1.1],
-				'x=1': [0,1,0,1.1],
-				'-x=1': [0,-1,0,1.2]
+				'x=1': [1,0,0,1.4],
+				'-x=1': [-1,0,0,1.1],
+				'z=1': [0,1,0,1.1],
+				'-z=1': [0,-1,0,1.2]
 			},
 			'container':'zxAxis',
 			'context_id':'zx_plane_canvas',
@@ -822,6 +822,7 @@ function createDivPositionAndText(name, coordinates, width, height, color) {
 	div.style.left = Math.floor(pixelX) + "px";
 	div.style.top  = Math.floor(pixelY) + "px";
 	div.style.color = color;
+	div.style.fontSize = 'small';
 	z_index = coordinates[2]/coordinates[3];
 	if(z_index > 0.2) {
 		div.style.zIndex = 1;

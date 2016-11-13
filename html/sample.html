@@ -8,8 +8,8 @@
 
 	</HEAD>
 	<body>
-	<div style="max-width:100%;">
-		<div style="float: left; position: relative; max-width:40%">
+	<div style="width:100%;">
+		<div style="float: left; width:40%; max-width:40%">
 		   <div id="scroll_div">
 			  <div>
 			  	<div class="scroll_bar">
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 	
-		<div style = "float:right;position:relative; max-width:60%">
+		<div style = "float:left; width: 60%; min-width:20%">
 			<div class="messagepop pop">
 				<p class="para_common"> This is an attempt to visualize a line in two dimensional(2D) and three dimensional (3D) space. This simulation demonstrates the rotation of a line around X, Y and Z Axis in 3d space and effect of these rotations on projection of line on X-Y, Y-Z and Z-X planes. </p>
 
@@ -91,35 +91,38 @@
 
 				<button type="button" class= 'btn_local' id = 'model_got_it'>Close IT!</button>
 			</div>
-			<div style="position:relative;">
-				<div style = "float:left; position:relative;">
-					<canvas id = "xy_plane_canvas"></canvas>
-					<div id="xyAxis" class="axisContainer"></div>
-					<p style = "position:relative; text-align:center;">X-Y</p>
-					<p class = 'eqn' id = "xy_eqn" style = "position:relative; text-align:center;">AX+BY=C</p>
-				</div>
+			<div id ="individual_planes">
+				<div>
+					<div class = 'canvas_div'>
+						<canvas id = "xy_plane_canvas"></canvas>
+						<div id="xyAxis" class="axisContainer"></div>
+						<p>X-Y</p>
+						<p id = "xy_eqn" style = "text-align:center;">AX+BY=C</p>
+					</div>
 
-				<div style = "float:left; position:relative;">
-					<canvas id = "yz_plane_canvas"></canvas>
-					<div id="yzAxis" class="axisContainer"></div>
-					<p style = "position:relative; text-align:center;">Y-Z</p>
-					<p class = 'eqn' id = "yz_eqn" style = "position:relative; text-align:center;">DY+EZ=F</p>
-				</div>
+					<div class = 'canvas_div'>
+						<canvas id = "yz_plane_canvas"></canvas>
+						<div id="yzAxis" class="axisContainer"></div>
+						<p>Y-Z</p>
+						<p id = "yz_eqn">DY+EZ=F </p>
+					</div>
 
-				<div style = "float:left;position:relative;">
-					<canvas id = "zx_plane_canvas"></canvas>
-					<div id="zxAxis" class="axisContainer"></div>
-					<p style = "position:relative; text-align:center;">Z-X</p>
-					<p class = 'eqn' id = "xz_eqn" style = "position:relative; text-align:center;">GZ+HX=I</p>
+					<div class = 'canvas_div'">
+						<canvas id = "zx_plane_canvas"></canvas>
+						<div id="zxAxis" class="axisContainer"></div>
+						<p>X-Z</p>
+						<p id = "xz_eqn">GZ+HX=I</p>
+					</div>	
 				</div>
 			</div>	
-			<div style="position:relative">
-				<p id = "xyz_eqn" style = "text-align:center;float:right;width:100%;margin-top:2%;margin-right:0%;" class = 'eqn'>GZ+HX=I</p>
-			</div>
 			
+			<div>
+				<p id = "xyz_eqn" class="eqn">GZ+HX=I</p>
+			</div>
+
 			<div class='option_div'>
-				<p style = "text-align:center;float:right;width:100%; margin-right:0%; background:rgba(7, 9, 35, 0.69); color:white" class = 'eqn'>Predefined Line Positions</p>
-				<div class="btn-group" role="group" aria-label="..." style="margin-top:1%; margin-bottom:0.5%;margin-left:0.5%">
+				<p>Predefined Line Positions</p>
+				<div class="btn-group" role="group" aria-label="..." style="margin-bottom:0.5%;margin-left:0.5%">
 					<button type="button" class="btn btn-default btn-preset">45 degrees to all the axis</button>
 					<div class="btn-group" role="group">
 					  <button class="btn btn-default dropdown-toggle btn-preset" type="button" id="dropdownParallel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -148,8 +151,8 @@
 					</div>
 				</div>
 			</div>
-			<div style="float:right;">
-				<a href = '' id = "help" class = 'help'>Click Here to Get More Information about the Tool</a>
+			<div class = 'help'">
+				<a href = '' id = "help" >Click Here to Get More Information about the Tool</a>
 			</div>
 		</div> 
 	</div>

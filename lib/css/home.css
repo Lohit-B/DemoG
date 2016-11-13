@@ -4,19 +4,24 @@
 	}
 .eqn {
 	background:#eaeae9;
-	margin:auto;
-	font-size:x-large;
-	margin-right: 1%;
+	font-size:large;
+	text-align:center;
+	width:97.8%;
+	margin: 0px 0.5% 5px 1.7%;
 }
 .help {
-	text-align: center;
 	bottom: 0;
-	position: fixed;
+	position: absolute;
 	width: 60%;
+	text-align: center;	
+}
+
+.help>a {
+	color:red;
 	font-size: larger;
 	font-weight: bold;
-	color:red;
 }
+
 .btn_local{
 	border: 3px solid #33b6e7;
 	background: #33b6e7;
@@ -39,16 +44,20 @@
 
 .option_div{
 	border:1px solid #eaeae9;
-	width:100%;
-	margin-top:1%;
-	position: relative;
-	float: right;
+	width:97.8%;
+	margin: 0px 0.5% 5px 1.7%;
+}
 
+.option_div > p{
+	text-align:center; 
+	font-size: large; 
+	background:rgba(7, 9, 35, 0.69); 
+	color:white;
 }
 
 .btn-preset {
     border-radius: 5px;
-    font-size: large;
+    font-size: larger;
     margin-left: 1%;
 }
 
@@ -95,5 +104,30 @@
 	width:33.3%; 
 	border-radius:0px; 
 	border:2px;
+}
+
+.canvas_div {
+	float: right;
+	margin-left: 2px;
+}
+.canvas_div<div {
+	width: 100%;
+	margin: 0px 2px 0px 2px;
+}
+.canvas_div>p {
+	background:#eaeae9;
+	font-size:large;
+	text-align: center;
+	margin: 0px 0px 5px;
+}
+#individual_planes {
+	margin-top: 0.2%;
+	display:inline-block;
+	width: 100%;
+}
+#individual_planes>div{
+	display: inherit;
+	float: right;
+	margin-right: .5%;
 }
 
