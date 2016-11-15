@@ -1,0 +1,65 @@
+.sliders {
+	border: 1px solid #ccc;
+	padding: 2px 3px;
+	margin-top: 2px;
+	padding-bottom:0px;
+	display: inline-block; 
+}
+
+.slider_span{
+	font-size: smaller;
+	width: 20%;
+}
+
+.tooltip-arrow {
+	visibility: hidden;
+}
+
+.slider .tooltip.top {
+	margin-top: -6px;
+}
+
+.plot {
+	margin: 0px;
+}
+.coordinate {
+	display: inline-flex;
+	margin-top: 1px;
+}
+.coordinate>* {
+	width: 25%;
+}
+.coordinate > span {
+	text-align: center;
+	line-height: 250%
+}
+
+.coordinate > input:nth-child(2) {
+	border-bottom-right-radius:0px;
+	border-top-right-radius:0px;
+	margin-left: 2px;
+}
+
+.coordinate > input:last-child {
+	border-bottom-left-radius:0px;
+	border-top-left-radius:0px;
+}
+
+.coordinate > input:nth-child(3) {
+	border-radius: 0px;
+}
+
+#plot_button>button {
+	width: 30%;
+	float: right;
+    margin-top: 2px;
+    margin-bottom: 2px
+}
+
+#ex1Slider {
+	width: 80%;
+}
+
+.solo_plane > div {
+	background: black;
+}
