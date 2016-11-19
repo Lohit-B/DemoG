@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../lib/css/line3D.css">
     <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
     <link rel="stylesheet" href="../lib/css/bootstrap-slider.min.css">
-    <link rel="stylesheet" href="../lib/css/line3D.css">
     
   </head>
   <body>
@@ -13,7 +13,7 @@
 		<div class="row">
   			<div class="col-sm-5">
   				<div class = 'sliders'>
-	  				<div class="row scroll">
+	  				<div class="row">
 	  					<div class="col-sm-6">
 	  						<span class = 'slider_span'>AXIS_X</span>
 	  						<input id="ax" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
@@ -23,7 +23,7 @@
 	  						<input id="lx" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
 	  					</div>
 	  				</div>
-	  				<div class="row scroll">
+	  				<div class="row">
 	  					<div class="col-sm-6">
 	  						<span class = 'slider_span'>AXIS_Y</span>
 	  						<input id="ay" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
@@ -33,7 +33,7 @@
 	  						<input id="ly" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
 	  					</div>
 	  				</div>
-	  				<div class="row scroll">
+	  				<div class="row">
 	  					<div class="col-sm-6">
 	  						<span class = 'slider_span'>AXIS_Z</span>
 	  						<input id="az" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
@@ -43,30 +43,35 @@
 	  						<input id="lz" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
 	  					</div>
 	  				</div>
-	  				<div class="row">
-	  					<div class="col-sm-6 coordinate">
-  							<span>A</span>
-	  						<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_A_X">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_A_Y">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_A_Z">
+	  				<div class="row plot">
+	  					<div class="col-sm-6 points">
+	  						<div class="coordinate">
+	  							<span>A</span>
+		  						<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_A_X">
+								<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_A_Y">
+								<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_A_Z">
+	  						</div>
 	  					</div>
-	  					<div class="col-sm-6 coordinate">
-  							<span>B</span>
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_B_X">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_B_Y">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_B_Z">
+	  					<div class="col-sm-6 points">
+	  						<div class="coordinate">
+	  							<span>B</span>
+								<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_B_X">
+								<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_B_Y">
+								<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_B_Z">
+	  						</div>
 	  					</div>
 	  				</div>
 	  				<div id = 'plot_button'>
-						<button class="btn btn-primary" type="button">Plot</button>
+						<button class="btn btn-default" type="button">Plot</button>
 					</div>
+
 	  			</div>
-	  			<div class="canvas">
+	  			<div>
 	  				<canvas id='xyz_canvas'></canvas>
 	  			</div>
   			</div>
   			<div class="col-sm-7">
-  			
+  				y
   			</div>
 		</div>
 	</div>
@@ -75,5 +80,4 @@
   	<script src="../lib/js/bootstrap.min.js"></script>
   	<script src="../lib/js/bootstrap-slider.min.js"></script>
   	<script src="../src/lineIn3D.js"></script>
-  	<script src="../src/draw3D.js"></script>
 </html>

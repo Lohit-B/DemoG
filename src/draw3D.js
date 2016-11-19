@@ -1,4 +1,4 @@
-var canvas = document.getElementById("xyn_canvas");
+var canvas = document.getElementById("xyz_canvas");
 var gl = canvas.getContext("experimental-webgl");
 var shaderTypeVertex = 'vertex';
 var shaderTypeFragment = 'fragment';
@@ -60,7 +60,7 @@ var drawLineAndTriangle = function(context, triangleStartIndex, triangleCount, l
 	context.drawArrays(context.TRIANGLES, triangleStartIndex, triangleCount);
 }
 
-var gl = getContext('xyn_canvas');
+var gl = getContext('xyz_canvas');
 var shaderprogram = gl.createProgram();
 programSetup(gl, shaderprogram, vertCode, fragCode);
 var vertices = [

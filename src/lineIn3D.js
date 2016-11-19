@@ -33,3 +33,13 @@ var slideraLZ = new Slider('#lz', {
 		return value;
 	}
 });
+
+function setCanvasHnW(canvasId) {
+	elem = document.getElementById(canvasId);
+	dimension = elem.parentElement.clientWidth;
+	//dimention = Math.min(calculateAvailableheight(offsetSectionClass), dimension);
+	elem.width = dimension;
+	elem.height = dimension;
+}
+
+setCanvasHnW("xyz_canvas");

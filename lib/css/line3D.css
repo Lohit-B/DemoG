@@ -8,7 +8,7 @@
 
 .slider_span{
 	font-size: smaller;
-	width: 20%;
+	width: 18%;
 }
 
 .tooltip-arrow {
@@ -17,36 +17,27 @@
 
 .slider .tooltip.top {
 	margin-top: -6px;
+	z-index: 100;
 }
 
-.plot {
-	margin: 0px;
+.scroll {
+	width: 100%;
+	text-align: center;
 }
+
 .coordinate {
 	display: inline-flex;
 	margin-top: 1px;
 }
-.coordinate>* {
-	width: 25%;
-}
 .coordinate > span {
 	text-align: center;
-	line-height: 250%
+	line-height: 250%;
+	width : 18%;
 }
 
-.coordinate > input:nth-child(2) {
-	border-bottom-right-radius:0px;
-	border-top-right-radius:0px;
+#point_A_Y, #point_B_Y {
 	margin-left: 2px;
-}
-
-.coordinate > input:last-child {
-	border-bottom-left-radius:0px;
-	border-top-left-radius:0px;
-}
-
-.coordinate > input:nth-child(3) {
-	border-radius: 0px;
+	margin-right: 2px;
 }
 
 #plot_button>button {
@@ -57,9 +48,14 @@
 }
 
 #ex1Slider {
-	width: 80%;
+	width: 82%;
 }
 
 .solo_plane > div {
 	background: black;
+}
+
+.canvas {
+	height: 100%;
+	width: 100%;
 }
