@@ -1,5 +1,6 @@
 var sliderAX = new Slider('#ax', {
 	formatter: function(value) {
+
 		return value;
 	}
 });
@@ -34,12 +35,28 @@ var slideraLZ = new Slider('#lz', {
 	}
 });
 
-function setCanvasHnW(canvasId) {
-	elem = document.getElementById(canvasId);
-	dimension = elem.parentElement.clientWidth;
-	//dimention = Math.min(calculateAvailableheight(offsetSectionClass), dimension);
-	elem.width = dimension;
-	elem.height = dimension;
+function setCanvasDimension(copyTo, copyFrom) {
+	dimension = copyFrom.clientWidth;
+	copyTo.width = dimension;
+	copyTo.height = dimension;
 }
 
-setCanvasHnW("xyz_canvas");
+elemXYZ_t = document.getElementById("xyz_canvas");
+elemXYZ_f = elemXYZ_t.parentElement;
+setCanvasDimension(elemXYZ_t, elemXYZ_f);
+
+
+
+elemXY_t = document.getElementById("xy_canvas");
+elemXY_F = elemXY_t.parentElement;
+setCanvasDimension(elemXY_t, elemXY_F);
+
+elemYZ_t = document.getElementById("yz_canvas");
+elemYZ_F = elemYZ_t.parentElement;
+setCanvasDimension(elemYZ_t, elemYZ_F);
+
+elemZX_t = document.getElementById("zx_canvas");
+elemZX_F = elemZX_t.parentElement;
+setCanvasDimension(elemZX_t, elemZX_F);
+
+w3IncludeHTML();

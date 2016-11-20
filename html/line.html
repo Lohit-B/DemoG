@@ -9,9 +9,15 @@
     
   </head>
   <body>
+  	<div w3-include-html="navigation.html"></div>
 	<div class="container-fluid">
 		<div class="row">
   			<div class="col-sm-5">
+  				<div>
+  					<p class="sim_title">
+  						<b>Line in 3-Dimensions</b>
+  					</p>
+  				</div>
   				<div class = 'sliders'>
 	  				<div class="row scroll">
 	  					<div class="col-sm-6">
@@ -65,12 +71,26 @@
 	  				<canvas id='xyz_canvas'></canvas>
 	  			</div>
   			</div>
-  			<div class="col-sm-7">
-  			
+  			<div class="col-sm-7 individual_canvas">
+				<div class="row">
+					<div class="col-xs-3">
+						<canvas id='xy_canvas'></canvas>
+						<p>X-Y</p>
+					</div>
+					<div class="col-xs-3">
+						<canvas id='yz_canvas'></canvas>
+						<p>Y-Z</p>
+					</div>
+					<div class="col-xs-3">
+						<canvas id='zx_canvas'></canvas>
+						<p>Z-X</p>
+					</div>
+				</div>
   			</div>
 		</div>
 	</div>
 </body>
+	<script src="../lib/js/w3data.js"></script>
 	<script src="../lib/js/jquery-3.1.0.js"></script>
   	<script src="../lib/js/bootstrap.min.js"></script>
   	<script src="../lib/js/bootstrap-slider.min.js"></script>

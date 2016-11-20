@@ -32,7 +32,11 @@
 .coordinate > span {
 	text-align: center;
 	line-height: 250%;
-	width : 18%;
+	width : 10%;
+}
+
+.coordinate > input {
+	width : 30%;
 }
 
 #point_A_Y, #point_B_Y {
@@ -58,4 +62,37 @@
 .canvas {
 	height: 100%;
 	width: 100%;
+}
+
+.sim_title{
+	color: black;
+    text-align: center;
+    text-decoration: underline;
+    font-size: large;
+}
+
+#sign_in{
+	margin-right: 1%;
+}
+
+#xy_canvas {
+	background-color: green;
+}
+
+#yz_canvas {
+	background-color: blue;
+}
+
+#zx_canvas {
+	background-color: darkgrey;
+}
+
+.individual_canvas>div>*{
+	margin: 0.5%;
+	width: 31.5%;
+	padding: 0% 0.5%;
+}
+
+.individual_canvas>div>div>p {
+	text-align: center;
 }
