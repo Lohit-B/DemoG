@@ -1,11 +1,3 @@
-.sliders {
-	border: 1px solid #ccc;
-	padding: 2px 3px;
-	margin-top: 2px;
-	padding-bottom:0px;
-	display: inline-block; 
-}
-
 .slider_span{
 	font-size: smaller;
 	width: 18%;
@@ -29,6 +21,7 @@
 	display: inline-flex;
 	margin-top: 1px;
 }
+
 .coordinate > span {
 	text-align: center;
 	line-height: 250%;
@@ -87,12 +80,49 @@
 	background-color: darkgrey;
 }
 
-.individual_canvas>div>*{
-	margin: 0.5%;
-	width: 31.5%;
-	padding: 0% 0.5%;
+.right_side>div{
+	margin-left: 0%;
+	margin-right: -1%;
 }
 
-.individual_canvas>div>div>p {
+.individual_canvas>div{
+	margin: 0% 0.5% 0% 0%;
+	width: 32.8%;
+	padding: 0%;
+}
+
+.individual_canvas>div>p {
 	text-align: center;
+}
+
+.equation {
+	text-align: center;
+	font-size: large;
+	background: #d3c6b5;
+    border-radius: 4px;
+}
+
+.panel {
+	margin-bottom: 5px;
+}
+
+#rotation .well, #translation .well {
+	padding: 0%;
+	background-color: white;
+	border: 0px;
+	margin-bottom: 10px
+}
+
+.controls {
+	border: 1px solid #e3e3e3;
+	display: inline-block;
+}
+
+.control_name {
+	margin: 2px;
+}
+
+.slider {
+	width: 100%;
+	margin-top: 5px;
 }

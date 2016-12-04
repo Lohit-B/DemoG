@@ -18,75 +18,168 @@
   						<b>Line in 3-Dimensions</b>
   					</p>
   				</div>
-  				<div class = 'sliders'>
-	  				<div class="row scroll">
-	  					<div class="col-sm-6">
-	  						<span class = 'slider_span'>AXIS_X</span>
-	  						<input id="ax" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-	  					</div>
-	  					<div class="col-sm-6">
-	  						<span class = 'slider_span'>LINE_X</span>
-	  						<input id="lx" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-	  					</div>
-	  				</div>
-	  				<div class="row scroll">
-	  					<div class="col-sm-6">
-	  						<span class = 'slider_span'>AXIS_Y</span>
-	  						<input id="ay" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-	  					</div>
-	  					<div class="col-sm-6">
-	  						<span class = 'slider_span'>LINE_Y</span>
-	  						<input id="ly" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-	  					</div>
-	  				</div>
-	  				<div class="row scroll">
-	  					<div class="col-sm-6">
-	  						<span class = 'slider_span'>AXIS_Z</span>
-	  						<input id="az" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-	  					</div>
-	  					<div class="col-sm-6">
-	  						<span class = 'slider_span'>LINE_Z</span>
-	  						<input id="lz" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-	  					</div>
-	  				</div>
-	  				<div class="row">
-	  					<div class="col-sm-6 coordinate">
-  							<span>A</span>
-	  						<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_A_X">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_A_Y">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_A_Z">
-	  					</div>
-	  					<div class="col-sm-6 coordinate">
-  							<span>B</span>
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="X" id="point_B_X">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Y" id="point_B_Y">
-							<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="Z" id="point_B_Z">
-	  					</div>
-	  				</div>
-	  				<div id = 'plot_button'>
-						<button class="btn btn-primary" type="button">Plot</button>
-					</div>
-	  			</div>
 	  			<div class="canvas">
 	  				<canvas id='xyz_canvas'></canvas>
 	  			</div>
   			</div>
-  			<div class="col-sm-7 individual_canvas">
-				<div class="row">
+  			<div class="col-sm-7 right_side">
+				<div class="row individual_canvas">
 					<div class="col-xs-3">
 						<canvas id='xy_canvas'></canvas>
-						<p>X-Y</p>
+						<p>x-y</p>
+						<p class="equation"><i>ax-by = c</i></p>
 					</div>
 					<div class="col-xs-3">
 						<canvas id='yz_canvas'></canvas>
-						<p>Y-Z</p>
+						<p>y-z</p>
+						<p class="equation"><i>ax-by = c</i></p>
 					</div>
 					<div class="col-xs-3">
 						<canvas id='zx_canvas'></canvas>
-						<p>Z-X</p>
+						<p>z-x</p>
+						<p class="equation"><i>ax-by = c</i></p>
 					</div>
 				</div>
+				<div class="equation_div">
+					<p class="equation" id = "eqn_xyz"><i>
+						ax = by = cz = FREEDOM
+					</i></p>
+				</div>
+				<div class="controls">
+	  				<div>
+	  					<a class="btn btn-primary control_name" role="button"s data-toggle="collapse" href="#rotation" aria-expanded="false" aria-controls="rotation">
+ 							Rotate It
+						</a>
+						<div class="collapse" id="rotation">
+  							<div class="well">
+  								<div class="slider">
+  									<div class="row scroll">
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>AXIS_X</span>
+					  						<input id="ax" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="10"/>
+					  					</div>
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>LINE_X</span>
+					  						<input id="lx" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="14"/>
+					  					</div>
+				  					</div>
+					  				<div class="row scroll">
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>AXIS_Y</span>
+					  						<input id="ay" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="12"/>
+					  					</div>
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>LINE_Y</span>
+					  						<input id="ly" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="25"/>
+					  					</div>
+					  				</div>
+					  				<div class="row scroll">
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>AXIS_Z</span>
+					  						<input id="az" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="20"/>
+					  					</div>
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>LINE_Z</span>
+					  						<input id="lz" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="30"/>
+					  					</div>
+					  				</div>
+  								</div>
+							</div>
+						</div>	
+		  			</div>
+		  			<div>
+	  					<a class="btn btn-primary control_name" role="button"s data-toggle="collapse" href="#translation" aria-expanded="false" aria-controls="translation">
+ 							Translate It
+						</a>
+						<div class="collapse" id="translation">
+  							<div class="well">
+  								<div class="slider">
+  									<div class="row scroll">
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>Along X</span>
+					  						<input id="ltx" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="14"/>
+					  					</div>
+				  					</div>
+					  				<div class="row scroll">
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>Along Y</span>
+					  						<input id="lty" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="25"/>
+					  					</div>
+					  				</div>
+					  				<div class="row scroll">
+					  					<div class="col-sm-6">
+					  						<span class = 'slider_span'>Along Z</span>
+					  						<input id="ltz" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="30"/>
+					  					</div>
+					  				</div>
+  								</div>
+							</div>
+						</div>	
+		  			</div>
+		  			<div class="coordinate_input">
+		  				<div class="row">
+			  					<div class="col-sm-6 coordinate">
+		  							<span>A</span>
+			  						<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="x" id="point_A_X">
+									<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="y" id="point_A_Y">
+									<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="z" id="point_A_Z">
+			  					</div>
+			  					<div class="col-sm-6 coordinate">
+		  							<span>B</span>
+									<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="x" id="point_B_X">
+									<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="y" id="point_B_Y">
+									<input type="text" class="form-control" aria-label="Coordinates of A" placeholder="z" id="point_B_Z">
+			  					</div>
+			  			</div>
+		  				<div id = 'plot_button'>
+							<button class="btn btn-primary" type="button">Plot</button>
+						</div>
+	  				</div>	
+		  		</div>
   			</div>
+		</div>
+		<div class='tips'>
+					<div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingOne">
+					      	<h4 class="panel-title">
+					        	<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					          	Teaching Guide
+					        	</a>
+					      	</h4>
+					    </div>
+					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					      	<div class="panel-body">
+					        
+					      	</div>
+					    </div>
+					</div>
+					<div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingTwo">
+					      	<h4 class="panel-title">
+					        	<a class="collapsed helpers" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="	collapseTwo">
+					          	Presets
+					        	</a>
+					      	</h4>
+					    </div>
+					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					      	<div class="panel-body">
+					        
+					      	</div>
+					    </div>
+					</div>
+					<div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingThree">
+					      	<h4 class="panel-title">
+					        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					          	Tool Guide
+					        	</a>
+					      	</h4>
+					    </div>
+					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+					      	<div class="panel-body">
+					      	</div>
+					    </div>
+					</div>
 		</div>
 	</div>
 </body>

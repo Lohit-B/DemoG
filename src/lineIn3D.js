@@ -35,6 +35,26 @@ var slideraLZ = new Slider('#lz', {
 	}
 });
 
+var slideraLX = new Slider('#ltx', {
+	formatter: function(value) {
+		return value;
+	}
+});
+
+var slideraLX = new Slider('#lty', {
+	formatter: function(value) {
+		return value;
+	}
+});
+
+var slideraLZ = new Slider('#ltz', {
+	formatter: function(value) {
+		return value;
+	}
+});
+
+
+
 function setCanvasDimension(copyTo, copyFrom) {
 	dimension = copyFrom.clientWidth;
 	copyTo.width = dimension;
