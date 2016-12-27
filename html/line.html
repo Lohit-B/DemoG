@@ -47,11 +47,14 @@
 				</div>
 				<div class="controls">
 	  				<div>
-	  					<a class="btn btn-primary control_name" role="button"s data-toggle="collapse" href="#rotation" aria-expanded="false" aria-controls="rotation">
- 							Rotate It
-						</a>
+	  					<h4>
+				        	<a class="expandable_link" role="button" data-toggle="collapse" href="#rotation" aria-expanded="true" aria-controls="rotation">
+				        		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				          		Rotate It
+				        	</a>
+		      			</h4>
 						<div class="collapse" id="rotation">
-  							<div class="well">
+  							<div class="">
   								<div class="slider">
   									<div class="row scroll">
 					  					<div class="col-sm-6">
@@ -88,9 +91,12 @@
 						</div>	
 		  			</div>
 		  			<div>
-	  					<a class="btn btn-primary control_name" role="button"s data-toggle="collapse" href="#translation" aria-expanded="false" aria-controls="translation">
- 							Translate It
-						</a>
+		  				<h4>
+				        	<a class="expandable_link" data-toggle="collapse" href="#translation" aria-expanded="true" aria-controls="translation">
+				        		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				          		Translate It
+				        	</a>
+		      			</h4>
 						<div class="collapse" id="translation">
   							<div class="well">
   								<div class="slider">
@@ -139,47 +145,49 @@
   			</div>
 		</div>
 		<div class='tips'>
-					<div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingOne">
-					      	<h4 class="panel-title">
-					        	<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					          	Teaching Guide
-					        	</a>
-					      	</h4>
-					    </div>
-					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-					      	<div class="panel-body">
-					        
-					      	</div>
-					    </div>
-					</div>
-					<div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingTwo">
-					      	<h4 class="panel-title">
-					        	<a class="collapsed helpers" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="	collapseTwo">
-					          	Presets
-					        	</a>
-					      	</h4>
-					    </div>
-					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-					      	<div class="panel-body">
-					        
-					      	</div>
-					    </div>
-					</div>
-					<div class="panel panel-default">
-					    <div class="panel-heading" role="tab" id="headingThree">
-					      	<h4 class="panel-title">
-					        	<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					          	Tool Guide
-					        	</a>
-					      	</h4>
-					    </div>
-					    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-					      	<div class="panel-body">
-					      	</div>
-					    </div>
-					</div>
+			<div>
+				<h4>
+		        	<a class="expandable_link" data-toggle="collapse" href="#teaching_guide" aria-expanded="false" aria-controls="teaching_guide">
+		          	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		          	Teaching Guide
+		        	</a>
+		      	</h4>
+		      	<div id="teaching_guide" class="collapse">
+		      		<div class="well">
+		        		<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+		      		</div>
+		    	</div>
+			</div>
+		   <div>
+		      	<h4>
+		        	<a class="expandable_link" data-toggle="collapse" href="#presets" aria-expanded="false" aria-controls="presets">
+		        		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		          		Presets
+		        	</a>
+		      	</h4>
+		    	<div id="presets" class="collapse">
+		      		<div class="well">
+		        
+		      		</div>
+		    	</div>
+		   </div>
+		    
+		    <div>
+		      	<h4>
+		        	<a class="expandable_link" data-toggle="collapse" href="#tool_guide" aria-expanded="false" aria-controls="tool_guide">
+		        		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		          		Tool Guide
+		        	</a>
+		      	</h4>
+		      	<div id="tool_guide" class="collapse">
+		      		<div class="well">
+		      		</div>
+		    	</div>
+		    </div>
 		</div>
 	</div>
 </body>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../lib/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="../lib/css/friction.css">
+    
+  </head>
+  <body>
+  	<div w3-include-html="navigation.html"></div>
+	<div class="container-fluid">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<h4>Ranges</h4>
+    				</div>
+      				<div class="modal-body">
+      					<div class="range">
+      						<span>Lower Block Mass:</span>
+	      					<div class='row'>
+	      						<div class="col-sm-4">
+	      							<input type="text" class="form-control" placeholder="max">
+	      						</div>
+	      						<div class="col-sm-4">
+	      							<input type="text" class="form-control" placeholder="min">
+	      						</div>
+	      						<div class="col-sm-4">
+	      							<input type="text" class="form-control" placeholder="unit">
+	      						</div>
+	      					</div>   
+      					</div>
+      					<div class="range">
+      						<span>Applied Force:</span>
+	      					<div class='row'>
+	      						<div class="col-sm-4">
+	      							<input type="text" class="form-control" placeholder="max">
+	      						</div>
+	      						<div class="col-sm-4">
+	      							<input type="text" class="form-control" placeholder="min">
+	      						</div>
+	      						<div class="col-sm-4">
+	      							<input type="text" class="form-control" placeholder="unit">
+	      						</div>
+	      					</div>   
+      					</div>
+      				</div>
+      				<div class="modal-footer">
+       		 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       		 			<button type="button" class="btn btn-success">Save changes</button>
+      				</div>
+      			</div>	
+    		</div><!-- /.modal-content -->
+  		</div><!-- /.modal-dialog -->
+
+  		<div class="modal fade" id="modalConfigSave" tabindex="-1" role="dialog">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<h4>Save Configuration</h4>
+    				</div>
+      				<div class="modal-body config_model">
+						<input type="text" class="form-control" placeholder="Config Name(eg. solid-liquid, class 10th etc.)">
+						<textarea class="form-control" rows="3" id="comment" placeholder="Description"></textarea>
+      				</div>
+      				<div class="modal-footer">
+       		 			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+       		 			<button type="button" class="btn btn-success">Save</button>
+      				</div>
+      			</div>	
+    		</div><!-- /.modal-content -->
+  		</div><!-- /.modal-dialog -->
+
+  		<div class="modal fade" id="modalSuggest" tabindex="-1" role="dialog">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<h4>Suggest</h4>
+    				</div>
+      				<div class="modal-body">
+						<textarea class="form-control" rows="5" id="comment" placeholder="Suggestion"></textarea>
+      				</div>
+      				<div class="modal-footer">
+       		 			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+       		 			<button type="button" class="btn btn-success">Save</button>
+      				</div>
+      			</div>	
+    		</div><!-- /.modal-content -->
+  		</div><!-- /.modal-dialog -->
+
+  		<div class="modal fade" id="modalConfigLoad" tabindex="-1" role="dialog">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<form class="form-inline config_model">
+   							<input class="form-control" type="text" placeholder="Search">
+						    <button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
+    				</div>
+      				<div class="modal-body">
+						<table class="table">
+						  <thead>
+						    <tr>
+						      <th>Name</th>
+						      <th>Description</th>
+						      <th>Action</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>solid_liquid</td>
+						      <td>lower box solid and upper box liquid</td>
+						     <td class ="loadAction">
+						      	<button type="button" class="btn btn-success">Load</button>
+						      	<button type="button" class="btn btn-danger">Delete</button>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>First Simulation</td>
+						      <td>lower box iron and upper box aluminium</td>
+						      <td class ="loadAction">
+						      	<button type="button" class="btn btn-success">Load</button>
+						      	<button type="button" class="btn btn-danger">Delete</button>
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>For class 10th</td>
+						      <td>lower box rubber and upper box metal</td>
+						      <td class ="loadAction">
+						      	<button type="button" class="btn btn-success">Load</button>
+						      	<button type="button" class="btn btn-danger">Delete</button>
+						      </td>
+						    </tr>
+						  </tbody>
+						</table>
+      				</div>
+      				<div class="modal-footer">
+       		 			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      				</div>
+      			</div>	
+    		</div><!-- /.modal-content -->
+  		</div><!-- /.modal-dialog -->
+	
+		<div class="row">
+			<div>
+					<p class="sim_title">
+						<span>Anatomy of Friction</span>
+					</p>
+  			</div>
+  			<div class="col-sm-8">
+	  			<div>
+	  				<canvas id='friction_canvas'></canvas>
+	  			</div>
+  			</div>
+  			<div class="col-sm-4">
+  				<div class="outputs">
+  					<div>
+  						<p id="max_ff" >
+  							<span class = "valueSpan"aria-hidden="true">Maximum Friction Force </span>
+  							<span> = </span>
+		 					<span id = 'mff'>100</span> Newton
+		 				</p>
+  					</div>
+  					<div>
+		 				<p id="current_ff" >
+		 					<span  class = "valueSpan" aria-hidden="true">Current Friction Force </span>
+		 					<span> = </span>
+		 					<span id="cff">50</span> Newton
+		 				</p>
+  					</div>
+  				</div>
+  				<div class='controls'>
+  					<div class = "content_box">
+  						<a class = "expandable_link" data-toggle="collapse" href="#variable" aria-expanded="true" aria-controls="variable">
+							<span class="glyphicon glyphicon-minus glyph_collapse" aria-hidden="true"></span>
+							Controls
+  						</a>
+  					
+	  					<div class="collapse in" id="variable">
+	  						<div class="sliders">
+		  						<span class = 'slider_span'>Mass of Upper block : </sub></span>
+		  						<input id="m_ub" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="10"/>
+	  						</div>		  					
+		  					<div class="sliders">
+		  						<span class = 'slider_span'>Force Applied :</span>
+		  						<input id="force" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="14"/>
+		  					</div>
+		  					<div id = 'paramChange'>
+								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Change Ranges</button>
+							</div>
+	  					</div>
+	  				</div>
+  					<div class = "content_box">
+  						<a class = "expandable_link" data-toggle="collapse" href="#setup" aria-expanded="false" aria-controls="setup">
+							<span class="glyphicon glyphicon-minus glyph_collapse" aria-hidden="true"></span>
+							Configuration
+  						</a>
+  					
+	  					<div class="collapse in" id="setup">
+	  						<div>
+	  							<p id='configName'><b>Configuration: Default</b></p>	
+	  						</div>
+	  						
+	  						<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Friction Constant</span>
+							  	<input type="text" class="form-control" placeholder="&mu; (Required)" aria-describedby="basic-addon1" id="mu">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">UB Type</span>
+							  	<input type="text" class="form-control" placeholder="Metal (Optional)" aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">LB Type</span>
+							  	<input type="text" class="form-control" placeholder="Metal (Optional)" aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">UB Material</span>
+							  	<input type="text" class="form-control" placeholder="Iron (Optional)" aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">LB Material</span>
+							  	<input type="text" class="form-control" placeholder="Aluminium (Optional)" aria-describedby="basic-addon1">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Gravity (m/s<sup>2</sup>)</span>
+							  	<input type="text" class="form-control" placeholder="g (Optional)" aria-describedby="basic-addon1" id="g">
+							</div>
+							<div id = 'paramChange'>
+								<button type="button" class="btn btn-default" >Apply</button>
+								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalConfigSave">Save</button>
+								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalConfigLoad">Load</button>
+							</div>
+						</div>
+					</div>
+  				</div>
+  			</div>
+		</div>
+		<div class='tips'>
+			<div class = "content_box">
+	        	<a class="expandable_link" data-toggle="collapse" href="#teaching_guide" aria-expanded="false" aria-controls="teaching_guide">
+	          		<span class="glyphicon glyphicon-plus glyph_collapse" aria-hidden="true"></span>
+	          		Teaching Guide
+	        	</a>
+		      	<div id="teaching_guide" class="guideContent collapse in">
+		      		<ul class="nav nav-pills">
+						<li class="nav-item active">
+						    <a class="nav-link active" data-toggle="tab" href="#pc" role="tab">Primary</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" data-toggle="tab" href="#suggestion" role="tab">Suggestive</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" data-toggle="tab" href="#graphical" role="tab">Graphical</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+					  	<div class="tab-pane active" id="pc" role="tabpanel">
+					  		<div class="tg_content">
+				      			<p>
+				      				<i><u><b>Current Friction force expalined</b></u> :  When F is applied and is less then Maximum frictional force, contact between lower and upper block will resist the movement by applying force equal to F in opposite direction.<br>
+				        			Confusion regarding frictional force being maximum frictional force can be eliniminated by this logic: If frictional force is maximum frictional force and applied force is less then it, then upper block should move backword.</i>
+				      			</p>
+		      				</div>
+					  	</div>
+					  	<div class="tab-pane" id="suggestion" role="tabpanel">
+					  		<div class="tg_content">
+					  			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSuggest">Add a Suggestion</button>
+					  			<table class="table">
+									<tbody>
+							    		<tr>
+							    			<td>
+							    				<div class="row">
+							    					<div class="col-sm-9">
+							    						<i> Friction is an important force without which actions can not be completed.</i>
+							    					</div>
+							    					<div class="col-sm-3">
+							    						<i class="suggestedBy"> A. Kashyap, Professor IIT Kanpur<br>
+							    						<a href=""> View Profile </a></i>
+							    					</div>
+							    				</div>
+							      				
+							      			</td>
+							    		</tr>
+							    		<tr>
+							      			<td> 
+							      				<div class="row">
+							    					<div class="col-sm-9">
+							    						<i> Friction is an important force without which actions can not be completed.</i>
+							    					</div>
+							    					<div class="col-sm-3">
+							    						<i class="suggestedBy"> H.C. Verma, Professor IIT Kanpur<br>
+							    						<a href=""> View Profile </a></i>
+							    					</div>
+							    				</div>
+							      			</td>
+							    		</tr>
+							    		<tr>
+							      			<td> 
+							      				<div class="row">
+							    					<div class="col-sm-9">
+							    						<i> Friction is an important force without which actions can not be completed.</i>
+							    					</div>
+							    					<div class="col-sm-3">
+							    						<i class="suggestedBy"> Ananymous</i>
+							    					</div>
+							    				</div>
+							      			</td>
+							    		</tr>
+							    		<tr>
+							      			<td> 
+							      				<div class="row">
+							    					<div class="col-sm-9">
+							    						<i> Friction is an important force without which actions can not be completed.</i>
+							    					</div>
+							    					<div class="col-sm-3">
+							    						<i class="suggestedBy"> H.C. Verma, Professor IIT Kanpur<br>
+							    						<a href=""> View Profile </a></i>
+							    					</div>
+							    				</div>
+							      			</td>
+							    		</tr>
+							  		</tbody>
+								</table>
+					  		</div>
+					  	</div>
+					  	<div class="tab-pane" id="graphical" role="tabpanel">
+					  		<div class="tg_content">
+					  			<div class="row graphs">
+					  				<div class="col-sm-4">
+					  					<canvas>
+					  						nvb
+					  					</canvas>
+					  				</div>
+					  				<div class="col-sm-4">
+					  					<canvas>
+					  						nvb
+					  					</canvas>
+					  				</div>
+					  				<div class="col-sm-4">
+					  					<canvas>
+					  						nvb
+					  					</canvas>
+					  				</div>
+					  			</div>
+					  		</div>
+					  	</div>
+					</div>
+		    	</div>
+			</div>
+		    
+		    <div class="content_box">
+		    	<a class = "expandable_link" data-toggle="collapse" href="#tool_guide" aria-expanded="false" aria-controls="tool_guide">
+	        		<span class="glyphicon glyphicon-plus glyph_collapse" aria-hidden="true"></span>
+	          		Tool Guide
+		        </a>
+		      	<div id="tool_guide" class="guideContent collapse in">
+		      		<div>
+		      		</div>
+		    	</div>
+		    </div>
+		</div>
+	</div>
+</body>
+	<script src="../lib/js/w3data.js"></script>
+	<script src="../lib/js/jquery-3.1.0.js"></script>
+	<script src="../lib/js/tether.min.js"></script>
+  	<script src="../lib/js/bootstrap.min.js"></script>
+	<script src="../lib/js/bootstrap-slider.min.js"></script>
+  	<script src="../src/helper.js"></script>
+  	<script src="../src/friction.js"></script>
+  	<script src="../src/friction-calculation.js"></script>
+</html>

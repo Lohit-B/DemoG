@@ -79,4 +79,14 @@ elemZX_t = document.getElementById("zx_canvas");
 elemZX_F = elemZX_t.parentElement;
 setCanvasDimension(elemZX_t, elemZX_F);
 
+$(function(){
+	$('.expandable_link').click( function(e) {
+		$(this).find('span').toggleClass('glyphicon-plus').toggleClass('glyphicon-minus');
+		href = $(this).attr('href');
+		console.log(href);
+		$(href).find('.well').focus();
+	});
+});
+
+
 w3IncludeHTML();
