@@ -159,3 +159,20 @@
     text-decoration: none;
     background-color: white; 
 }
+
+#setup .table, .outputs .table{
+	margin-bottom: 10px;
+}
+
+#setup .table>tbody>tr>td,  .outputs .table>tbody>tr>td{
+	border: grey;
+	padding: 2px;
+	vertical-align: middle;
+}
+
+#setup .table>tbody>tr>td>input {
+	border: 0;
+    box-shadow: none;
+    border-bottom: #aaa8a8 solid 1px;
+    border-radius: 0px;
+} 

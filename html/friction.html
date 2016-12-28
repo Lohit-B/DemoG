@@ -156,20 +156,23 @@
   			</div>
   			<div class="col-sm-4">
   				<div class="outputs">
-  					<div>
-  						<p id="max_ff" >
-  							<span class = "valueSpan"aria-hidden="true">Maximum Friction Force </span>
-  							<span> = </span>
-		 					<span id = 'mff'>100</span> Newton
-		 				</p>
-  					</div>
-  					<div>
-		 				<p id="current_ff" >
-		 					<span  class = "valueSpan" aria-hidden="true">Current Friction Force </span>
-		 					<span> = </span>
-		 					<span id="cff">50</span> Newton
-		 				</p>
-  					</div>
+					<table class="table">
+						<tbody>
+						    <tr>
+						      <td>Maximum Friction Force:</td>
+						      
+						      <td>
+						      	<span id = 'mff'>100</span> Newton
+						      </td>
+						    </tr>
+						    <tr>
+						      <td>Current Friction Force:</td>
+						      <td>
+						      	<span id="cff">50</span> Newton
+						      </td>
+						    </tr>
+						</tbody>
+					</table>	
   				</div>
   				<div class='controls'>
   					<div class = "content_box">
@@ -202,31 +205,47 @@
 	  						<div>
 	  							<p id='configName'><b>Configuration: Default</b></p>	
 	  						</div>
-	  						
-	  						<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Friction Constant</span>
-							  	<input type="text" class="form-control" placeholder="&mu; (Required)" aria-describedby="basic-addon1" id="mu">
-							</div>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">UB Type</span>
-							  	<input type="text" class="form-control" placeholder="Metal (Optional)" aria-describedby="basic-addon1">
-							</div>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">LB Type</span>
-							  	<input type="text" class="form-control" placeholder="Metal (Optional)" aria-describedby="basic-addon1">
-							</div>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">UB Material</span>
-							  	<input type="text" class="form-control" placeholder="Iron (Optional)" aria-describedby="basic-addon1">
-							</div>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">LB Material</span>
-							  	<input type="text" class="form-control" placeholder="Aluminium (Optional)" aria-describedby="basic-addon1">
-							</div>
-							<div class="input-group">
-								<span class="input-group-addon" id="basic-addon1">Gravity (m/s<sup>2</sup>)</span>
-							  	<input type="text" class="form-control" placeholder="g (Optional)" aria-describedby="basic-addon1" id="g">
-							</div>
+	  						<table class="table">
+							  <tbody>
+							    <tr>
+							      <td>Friction Constant:</td>
+							      <td>
+							      	<input type="text" class="form-control" placeholder="&mu; (Required)" id="mu">
+							      </td>
+							    </tr>
+							    <tr>
+							      <td>UB Type:</td>
+							      <td>
+							      	<input type="text" class="form-control" placeholder="Metal (Optional)">
+							      </td>
+							    </tr>
+							    <tr>
+							      <td>LB Type:</td>
+							      <td>
+							      	<input type="text" class="form-control" placeholder="Plastic (Optional)">
+							      </td>
+							    </tr>
+							    <tr>
+							      <td>UB Material:</td>
+							      <td>
+							      	<input type="text" class="form-control" placeholder="Iron (Optional)">
+							      </td>
+							    </tr>
+							    <tr>
+							      <td>LB Material:</td>
+							      <td>
+							      	<input type="text" class="form-control" placeholder="PVC (Optional)">
+							      </td>
+							    </tr>
+							    <tr>
+							      <td>Gravity (m/s<sup>2</sup>):</td>
+							      <td>
+							      	<input type="text" class="form-control" placeholder="g (Optional)" id="g">
+							      </td>
+							    </tr>
+							    
+							  </tbody>
+							</table>	  				
 							<div id = 'paramChange'>
 								<button type="button" class="btn btn-default" >Apply</button>
 								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalConfigSave">Save</button>
@@ -240,7 +259,7 @@
 		<div class='tips'>
 			<div class = "content_box">
 	        	<a class="expandable_link" data-toggle="collapse" href="#teaching_guide" aria-expanded="false" aria-controls="teaching_guide">
-	          		<span class="glyphicon glyphicon-plus glyph_collapse" aria-hidden="true"></span>
+	          		<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 	          		Teaching Guide
 	        	</a>
 		      	<div id="teaching_guide" class="guideContent collapse in">
@@ -352,7 +371,7 @@
 		    
 		    <div class="content_box">
 		    	<a class = "expandable_link" data-toggle="collapse" href="#tool_guide" aria-expanded="false" aria-controls="tool_guide">
-	        		<span class="glyphicon glyphicon-plus glyph_collapse" aria-hidden="true"></span>
+	        		<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 	          		Tool Guide
 		        </a>
 		      	<div id="tool_guide" class="guideContent collapse in">

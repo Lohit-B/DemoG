@@ -81,8 +81,5 @@ var sliderAY = new Slider('#force', {
 $(function(){
 	$('.expandable_link').click( function(e) {
 		$(this).find('span').toggleClass('glyphicon-plus').toggleClass('glyphicon-minus');
-		href = $(this).attr('href');
-		console.log(href);
-		$(href).find('.well').focus();
 	});
 });

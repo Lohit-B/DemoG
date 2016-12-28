@@ -1,14 +1,10 @@
 function setCanvasDimension(copyTo, copyFrom) {
-	var totalWidth = copyFrom.clientWidth;
-	var totalHeight = window.innerHeight*0.9;
-	var ratio = totalHeight/totalWidth;
-	copyTo.height = ratio > 1 ? totalWidth : totalHeight
-	copyTo.width = totalWidth;
-	// copyTo.height = dimension;
-	// copyTo.parentElement.marginLeft = ;
-
+  var totalWidth = copyFrom.clientWidth;
+  var totalHeight = window.innerHeight*0.9;
+  var ratio = totalHeight/totalWidth;
+  copyTo.height = ratio > 1 ? totalWidth : totalHeight
+  copyTo.width = totalWidth;
 }
-
 elem_to = document.getElementById("friction_canvas");
 elem_from = elem_to.parentElement;
 setCanvasDimension(elem_to, elem_from);
