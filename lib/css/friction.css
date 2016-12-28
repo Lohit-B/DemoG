@@ -3,7 +3,11 @@
     font-family: serif;
     font-size: x-large;
     color: white;
-    background-color: #09756b;
+    background-color: #159589;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: -1px;
+    border-top: #61b9b2 solid 1px; 
 }
 
 .slider .tooltip.top {
@@ -75,11 +79,7 @@
 	margin-bottom: 10px;
 	padding: 5px;
 	padding-bottom: 0px;
-}
-
-.tips > div > a {
-	color: black;
-	font-size: larger;
+	margin-top: 10px;
 }
 
 .tg_content >table>tbody>tr>td{
@@ -124,13 +124,13 @@
 	font-size: smaller;
 }
 .expandable_link {
-	color: black;
+	color: white;
     border: #6bb9b1 solid 1px;
     padding: 5px;
     border-radius: 3px;
     font-family: serif;
     font-size: larger;
-    background-color: #6bb9b1;
+    background-color: #159589;
 }
 .content_box {
 	margin-bottom: 10px;	
@@ -176,3 +176,27 @@
     border-bottom: #aaa8a8 solid 1px;
     border-radius: 0px;
 } 
+
+@media screen and (min-width: 800px) {
+	body {
+		background-color: #f3f2f2;
+	}
+    .simulation {
+        background-color: white;
+        margin-left: 0px;
+        margin-right: 0px; 
+    }
+    .figure {
+    	border-right: #f3f2f2 solid 3px;
+    }
+    .control-panel {
+    	padding-top: 10px;
+    	padding-bottom: 10px;
+    	border-left: #f3f2f2 solid 1px;
+	}
+	.tips .content_box {
+		background-color: white;
+		padding: 15px;
+	}
+}
+

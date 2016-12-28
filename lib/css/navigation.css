@@ -6,19 +6,23 @@
 .navbar-inverse .navbar-brand:hover 
 ,.navbar-inverse .navbar-brand:focus 
 ,.navbar-inverse .navbar-nav>li>a:active {
-    color: grey;
+    color: #f6fd06;
     background-color: transparent
 }
 
 .navbar-inverse .navbar-nav>li>a:hover 
 ,.navbar-inverse .navbar-nav>li>a:focus 
 ,.navbar-inverse .navbar-nav>li>a:active {
-	color: grey;
-	background-color: transparent
+	background-color: transparent;
+    background-color: #07654e;
+    color: #f6fd06;
 }
 
 .navbar-inverse .navbar-nav>li>a {
     color: white;
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 5px;
 }
 
 .navbar-inverse .navbar-brand {
@@ -26,8 +30,8 @@
 }
 
 .navbar-inverse {
-	background-color: #09756b;
-	border-color: #09756b;
+	background-color: #159589;
+	border-color: #159589;
 }
 
 .navbar-inverse .navbar-toggle {
@@ -37,5 +41,11 @@
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
      border: 0; 
 }
+.nav-button {
+	background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
 
 

@@ -10,8 +10,13 @@
   </head>
   <body>
   	<div w3-include-html="navigation.html"></div>
+  	<div>
+		<p class="sim_title">
+			<span>Anatomy of Friction</span>
+		</p>
+	</div>
 	<div class="container-fluid">
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+		<div class="modal fade" id="modalRange" tabindex="-1" role="dialog">
   			<div class="modal-dialog" role="document">
     			<div class="modal-content">
     				<div class="modal-header">
@@ -21,28 +26,22 @@
       					<div class="range">
       						<span>Lower Block Mass:</span>
 	      					<div class='row'>
-	      						<div class="col-sm-4">
+	      						<div class="col-sm-6">
 	      							<input type="text" class="form-control" placeholder="max">
 	      						</div>
-	      						<div class="col-sm-4">
+	      						<div class="col-sm-6">
 	      							<input type="text" class="form-control" placeholder="min">
-	      						</div>
-	      						<div class="col-sm-4">
-	      							<input type="text" class="form-control" placeholder="unit">
-	      						</div>
+	      						</div>	      					
 	      					</div>   
       					</div>
       					<div class="range">
       						<span>Applied Force:</span>
 	      					<div class='row'>
-	      						<div class="col-sm-4">
+	      						<div class="col-sm-6">
 	      							<input type="text" class="form-control" placeholder="max">
 	      						</div>
-	      						<div class="col-sm-4">
+	      						<div class="col-sm-6">
 	      							<input type="text" class="form-control" placeholder="min">
-	      						</div>
-	      						<div class="col-sm-4">
-	      							<input type="text" class="form-control" placeholder="unit">
 	      						</div>
 	      					</div>   
       					</div>
@@ -142,19 +141,13 @@
       			</div>	
     		</div><!-- /.modal-content -->
   		</div><!-- /.modal-dialog -->
-	
-		<div class="row">
-			<div>
-					<p class="sim_title">
-						<span>Anatomy of Friction</span>
-					</p>
-  			</div>
-  			<div class="col-sm-8">
+		<div class="row simulation">
+  			<div class="col-sm-8 figure">
 	  			<div>
 	  				<canvas id='friction_canvas'></canvas>
 	  			</div>
   			</div>
-  			<div class="col-sm-4">
+  			<div class="col-sm-4 control-panel">
   				<div class="outputs">
 					<table class="table">
 						<tbody>
@@ -191,7 +184,7 @@
 		  						<input id="force" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="5" data-slider-value="14"/>
 		  					</div>
 		  					<div id = 'paramChange'>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Change Ranges</button>
+								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalRange">Change Ranges</button>
 							</div>
 	  					</div>
 	  				</div>
